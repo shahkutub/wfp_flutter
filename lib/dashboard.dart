@@ -17,7 +17,7 @@ import 'Fragments/primaryincidentPage.dart';
       theme: new ThemeData(
       primarySwatch: Colors.blue,
       ),
-      home: homePage(),
+      home: primaryincidentPage(),
       routes:  {
       pageRoutes.home: (context) => homePage(),
       //pageRoutes.contact: (context) => primaryincidentPagecopy(),

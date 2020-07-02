@@ -12,12 +12,12 @@ class navigationDrawer extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: <Widget>[
           createDrawerHeader(),
-          createDrawerBodyItem(
-            icon: Icons.home,
-            text: 'Home',
-            onTap: () =>
-                Navigator.pushReplacementNamed(context, pageRoutes.home),
-          ),
+//          createDrawerBodyItem(
+//            icon: Icons.home,
+//            text: 'Home',
+//            onTap: () =>
+//                Navigator.pushReplacementNamed(context, pageRoutes.home),
+//          ),
           createDrawerBodyItem(
             icon: Icons.add,
             text: 'Primary Incident',

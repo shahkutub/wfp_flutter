@@ -28,18 +28,20 @@ import 'package:wfp/dashboard.dart';
                     padding: EdgeInsets.all(20),
                     child: ListView(
                       children: <Widget>[
-                        Container(
-                            alignment: Alignment.center,
-                            padding: EdgeInsets.all(10),
-                            child: Text(
-                              'Emergency Operation',
-                              style: TextStyle(
-                                  color: Colors.blue,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 20),
-                            )),
+//                        Container(
+//                            alignment: Alignment.center,
+//                            padding: EdgeInsets.all(10),
+//                            child: Text(
+//                              'Emergency Operation',
+//                              style: TextStyle(
+//                                  color: Colors.blue,
+//                                  fontWeight: FontWeight.w500,
+//                                  fontSize: 20),
+//                            )
+//
+//                        ),
 
-                         Image.asset('images/ic_launcher.png', scale: 1.0, width: 200.0, height: 200.0),
+                        Image.asset('images/ic_launcher.png', scale: 1.0, width: 150.0, height: 150.0,fit: BoxFit.contain),
 
                         Container(
                             alignment: Alignment.center,

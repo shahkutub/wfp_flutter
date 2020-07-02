@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:wfp/dashboard.dart';
@@ -59,7 +60,7 @@ class CarouselPage extends StatelessWidget {
             height: 10.0,
           ),
 
-          Image.asset('images/ic_launcher.png', scale: 1.0, width: 150.0, height: 150.0),
+          Image.asset('images/ic_launcher.png', scale: 1.0, width: 150.0, height: 150.0,fit: BoxFit.contain),
 
           SizedBox(
             height: 20.0,
