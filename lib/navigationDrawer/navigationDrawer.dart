@@ -25,12 +25,12 @@ class navigationDrawer extends StatelessWidget {
                 Navigator.pushReplacementNamed(context, pageRoutes.primaryincident),
           ),
 
-//          createDrawerBodyItem(
-//            icon: Icons.event_note,
-//            text: 'Events',
-//            //onTap: () =>
-//               // Navigator.pushReplacementNamed(context, pageRoutes.event),
-//          ),
+          createDrawerBodyItem(
+            icon: Icons.event_note,
+            text: 'Add/Update shelter',
+            onTap: () =>
+                Navigator.pushReplacementNamed(context, pageRoutes.contact),
+          ),
 //          Divider(),
 //          createDrawerBodyItem(
 //            icon: Icons.notifications_active,

@@ -17,27 +17,44 @@ class primaryincidentPage extends StatefulWidget {
 class primaryincidentPageState extends State<primaryincidentPage> {
   List<bool> inputs = new List<bool>();
   //List<String> inputsValue = new List<String>();
-
+  List <DataModel> listTitle = new List();
   List<Union> _unions = Union.getUnions();
   List<Company> _companies = Company.getCompanies();
   List<DropdownMenuItem<Company>> _dropdownMenuItems;
   Company _selectedCompany;
-  Map<String, bool> values = {
-    'Apple': false,
-    'Banana': false,
-    'Cherry': false,
-    'Mango': false,
-    'Orange': false,
-  };
+  TextEditingController editControllerAfFull = new TextEditingController();
+  TextEditingController editControllerAfHalf = new TextEditingController();
+  TextEditingController editControHouseAfFull = new TextEditingController();
+  TextEditingController editControHouseAfHalf = new TextEditingController();
+  TextEditingController editControDeadDiv = new TextEditingController();
+  TextEditingController editControInjured = new TextEditingController();
+  TextEditingController editControshelterNum = new TextEditingController();
+  TextEditingController editControsPeoplehelterNum = new TextEditingController();
 
   var tmpArray = [];
 
+  int total_family_afected_full;
+
+  int fm_full_aff;
+
+  int family_full_af =0;
+
   void ItemChange(bool val,int index){
+    //DataModel dataMode2 = new DataModel();
     setState(() {
       inputs[index] = val;
+      if(val==true){
+        String n = _unions[index].name;
+        DataModel dataMode2 = new DataModel(n, '', '', '', '','', '', '', '', '');
 
+        listTitle.add(dataMode2);
+      }else{
+        listTitle.removeAt(index);
+      }
     });
   }
+
+
 
 
   @override
@@ -45,9 +62,6 @@ class primaryincidentPageState extends State<primaryincidentPage> {
     _dropdownMenuItems = buildDropdownMenuItems(_companies);
     _selectedCompany = _dropdownMenuItems[0].value;
     tmpArray.clear();
-
-
-
 
     setState(() {
       for(int i=0;i<_unions.length;i++){
@@ -97,6 +111,23 @@ class primaryincidentPageState extends State<primaryincidentPage> {
   Widget build(BuildContext context) {
     //return new Scaffold(
 
+    double height = MediaQuery.of(context).size.height;
+
+//    var pos = 1;
+//    for (var i = 0; i < 15; i++) {
+//      pos+=i;
+//      DataModel dataMode2 = new DataModel('', '', '', '', '','', '', '', '', '');
+//      listTitle.add(dataMode2);
+//      pos-=i;
+//
+//    }
+
+
+//    String name = listTitle.elementAt(3).username;
+//    debugPrint('name: $name');
+
+
+    List <String> listRow = new List();
     return new Scaffold(
         appBar: AppBar(
           title: Text("Primary Report of Hazard"),
@@ -218,7 +249,17 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                 children: <Widget>[
                                   Checkbox(
                                       value: inputs[index],
-                                      onChanged: (bool val){ItemChange(val, index);}
+                                      onChanged: (bool val){
+                                        //debugPrint('index: $_unions[index].name');
+                                        ItemChange(val, index);
+                                        //if(val==true){
+
+//                                          setState(() {
+//                                            DataModel dataMode2 = new DataModel('', '', '', '', '','', '', '', '', '');
+//                                            listTitle.add(dataMode2);
+//                                          });
+                                        //}
+                                      }
                                   ),
                                   Padding(padding: const EdgeInsets.fromLTRB(0,0,10,0),
                                     child: Text(_unions[index].name, style:TextStyle(fontSize: 15,)),
@@ -236,9 +277,851 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                         height: 10,
                       ),
 
-                      new Expanded(
-                        child: new MyList(),
+                      new Container(
+
+                        //child: MyList(),
+
+                        child: new SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+
+                          child: new Column(
+
+                            children: <Widget>[
+                              Row(
+                                children: <Widget>[
+
+
+                                  Container(
+
+                                      padding: const EdgeInsets.all(3.0),
+                                      decoration: BoxDecoration(
+                                          color: Colors.black12,
+                                          border: Border.all(color: Colors.black12)
+                                      ),
+
+                                      width: 250.0,
+                                      height: 55,
+                                      child: new Text(
+                                          "Pourashava/Union",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 20
+                                          )
+                                      )
+                                  ),
+
+                                  Column(
+                                    children: <Widget>[
+                                      Container(
+                                          padding: const EdgeInsets.all(3.0),
+                                          decoration: BoxDecoration(
+                                              color: Colors.black12,
+                                              border: Border.all(color: Colors.black12)
+                                          ),
+
+                                          width: 250.0,
+                                          height: 30,
+                                          child: new Text(
+                                              "No of Family Affected",
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 20
+                                              )
+                                          )
+                                      ),
+
+                                      Row(
+                                        children: <Widget>[
+                                          Container(
+                                              padding: const EdgeInsets.all(3.0),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.black12,
+                                                  border: Border.all(color: Colors.black12)
+                                              ),
+                                              height: 25,
+                                              width: 125.0,
+                                              child: new Text(
+                                                  "Fully Affected",
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 15
+                                                  )
+                                              )
+                                          ),
+
+                                          Container(
+                                              padding: const EdgeInsets.all(3.0),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.black12,
+                                                  border: Border.all(color: Colors.black12)
+                                              ),
+                                              height: 25,
+                                              width: 125.0,
+                                              child: new Text(
+                                                  "Partially Affected",
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 15
+                                                  )
+                                              )
+                                          ),
+
+                                        ],
+
+                                      )
+
+                                    ],
+
+                                  ),
+
+                                  Column(
+                                    children: <Widget>[
+                                      Container(
+                                          padding: const EdgeInsets.all(3.0),
+                                          decoration: BoxDecoration(
+                                              color: Colors.black12,
+                                              border: Border.all(color: Colors.black12)
+                                          ),
+
+                                          width: 250.0,
+                                          height: 30,
+                                          child: new Text(
+                                              "No of House Affected",
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 20
+                                              )
+                                          )
+                                      ),
+
+                                      Row(
+                                        children: <Widget>[
+                                          Container(
+                                              padding: const EdgeInsets.all(3.0),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.black12,
+                                                  border: Border.all(color: Colors.black12)
+                                              ),
+                                              height: 25,
+                                              width: 125.0,
+                                              child: new Text(
+                                                  "Fully Affected",
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 15
+                                                  )
+                                              )
+                                          ),
+
+                                          Container(
+                                              padding: const EdgeInsets.all(3.0),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.black12,
+                                                  border: Border.all(color: Colors.black12)
+                                              ),
+                                              height: 25,
+                                              width: 125.0,
+                                              child: new Text(
+
+                                                  "Partially Affected",
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 15
+                                                  )
+                                              )
+                                          ),
+
+                                        ],
+
+                                      )
+
+                                    ],
+
+                                  ),
+
+                                  Container(
+                                      padding: const EdgeInsets.all(3.0),
+                                      decoration: BoxDecoration(
+                                          color: Colors.black12,
+                                          border: Border.all(color: Colors.black12)
+                                      ),
+                                      height: 55,
+                                      width: 250.0,
+                                      child: new Text(
+                                          "No. of Deadiv",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 20
+                                          )
+                                      )
+                                  ),
+
+                                  Container(
+                                      padding: const EdgeInsets.all(3.0),
+                                      decoration: BoxDecoration(
+                                          color: Colors.black12,
+                                          border: Border.all(color: Colors.black12)
+                                      ),
+                                      height: 55,
+                                      width: 250.0,
+                                      child: new Text(
+                                          "No. of Injured",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 20
+                                          )
+                                      )
+                                  ),
+                                  Container(
+                                      padding: const EdgeInsets.all(3.0),
+                                      decoration: BoxDecoration(
+                                          color: Colors.black12,
+                                          border: Border.all(color: Colors.black12)
+                                      ),
+                                      height: 55,
+                                      width: 250.0,
+                                      child: new Text(
+                                          "No of Shelter Center",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 20
+                                          )
+                                      )
+                                  ),
+
+                                  Container(
+                                      padding: const EdgeInsets.all(3.0),
+                                      decoration: BoxDecoration(
+                                          color: Colors.black12,
+                                          border: Border.all(color: Colors.black12)
+                                      ),
+                                      height: 55,
+                                      width: 250.0,
+                                      child: new Text(
+                                          "No of People Taken Shelter",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 20
+                                          )
+                                      )
+                                  ),
+
+                                  Container(
+                                      padding: const EdgeInsets.all(3.0),
+                                      decoration: BoxDecoration(
+                                          color: Colors.black12,
+                                          border: Border.all(color: Colors.black12)
+                                      ),
+                                      height: 55,
+                                      width: 250.0,
+                                      child: new Text(
+                                          "Comments",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 20
+                                          )
+                                      )
+                                  ),
+
+
+                                ],
+                              ),
+                              Row(
+                                children: <Widget>[
+                                  //SizedBox(
+                                  SizedBox(
+                                    width: 2000.0,
+                                    //height: 270.0,
+                                    height: height/2.3,
+
+                                    child: ListView.builder(
+
+                                      itemCount: listTitle.length,
+                                      itemBuilder: (BuildContext context, int i) {
+
+                                        listRow.clear();
+
+                                          listRow.add(listTitle.elementAt(i).unionName);
+                                          listRow.add(listTitle.elementAt(i).fullAffectedFamily);
+                                          listRow.add(listTitle.elementAt(i).partialAffectedFamily);
+
+                                          listRow.add(listTitle.elementAt(i).fullAffectedHouse);
+                                          listRow.add(listTitle.elementAt(i).partialAffectedHouse);
+
+                                          listRow.add(listTitle.elementAt(i).dead);
+                                          listRow.add(listTitle.elementAt(i).injured);
+                                          listRow.add(listTitle.elementAt(i).shelterCenter);
+                                          listRow.add(listTitle.elementAt(i).takenShelter);
+                                          listRow.add(listTitle.elementAt(i).comment);
+
+
+
+                                        return new Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                          children: new List.generate(listRow.length, (int j) {
+
+
+                                            if(j==0){
+                                              return new Container(
+                                                padding: const EdgeInsets.all(3.0),
+                                                decoration: BoxDecoration(
+                                                    border: Border.all(color: Colors.black12)
+                                                ),
+                                                height: 55,
+
+                                                width: 250.0,
+                                                child: new Text(
+                                                    listTitle.elementAt(i).unionName,
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 20
+                                                    )
+                                                ),
+                                              );
+                                            }
+                                            if(j==1){
+                                              return new Row(
+                                                children: <Widget>[
+                                                  Container(
+                                                    padding: const EdgeInsets.all(3.0),
+                                                    decoration: BoxDecoration(
+                                                        border: Border.all(color: Colors.black12)
+                                                    ),
+                                                    height: 55,
+                                                    width: 125.0,
+                                                    child: TextField(
+                                                      controller: editControllerAfFull,
+                                                      decoration: InputDecoration(
+                                                        border: InputBorder.none,
+                                                        //hintText: 'Enter a search term'
+                                                      ),
+                                                      textAlign: TextAlign.center,
+                                                      style: TextStyle(fontSize: 20),
+
+                                                      onChanged: (value) => {
+                                                        //total_family_afected_full = editControllerAfl.text as int,
+                                                        debugPrint("total ${editControllerAfFull.text}"),
+
+                                                        if(j==1){
+                                                          listTitle[i].fullAffectedFamily = total_family_afected_full as String,
+                                                          for (var i = 0; i < listTitle.length; i++) {
+                                                            fm_full_aff = listTitle[i].fullAffectedFamily as int,
+                                                            family_full_af =  family_full_af+fm_full_aff,
+                                                            debugPrint('total: $family_full_af')
+                                                          }
+                                                        }
+                                                      },
+
+                                                    ),
+
+                                                  ),
+                                                ],
+
+                                              );
+                                            }
+                                            if(j==2){
+                                              return new Row(
+                                                children: <Widget>[
+                                                  Container(
+                                                    padding: const EdgeInsets.all(3.0),
+                                                    decoration: BoxDecoration(
+                                                        border: Border.all(color: Colors.black12)
+                                                    ),
+                                                    height: 55,
+                                                    width: 125.0,
+                                                    child: TextField(
+                                                      controller: editControllerAfHalf,
+                                                      decoration: InputDecoration(
+                                                        border: InputBorder.none,
+                                                        //hintText: 'Enter a search term'
+                                                      ),
+                                                      textAlign: TextAlign.center,
+                                                      style: TextStyle(fontSize: 20),
+
+                                                      onChanged: (value) => {
+                                                        //total_family_afected_full = editControllerAfl.text as int,
+                                                        debugPrint("total ${editControllerAfHalf.text}"),
+
+                                                        if(j==1){
+                                                          listTitle[i].fullAffectedFamily = total_family_afected_full as String,
+                                                          for (var i = 0; i < listTitle.length; i++) {
+                                                            fm_full_aff = listTitle[i].fullAffectedFamily as int,
+                                                            family_full_af =  family_full_af+fm_full_aff,
+                                                            debugPrint('total: $family_full_af')
+                                                          }
+                                                        }
+                                                      },
+
+                                                    ),
+
+                                                  ),
+                                                ],
+
+                                              );
+                                            }
+                                            if(j==3){
+                                              return new Row(
+                                                children: <Widget>[
+                                                  Container(
+                                                    padding: const EdgeInsets.all(3.0),
+                                                    decoration: BoxDecoration(
+                                                        border: Border.all(color: Colors.black12)
+                                                    ),
+                                                    height: 55,
+                                                    width: 125.0,
+                                                    child: TextField(
+                                                      controller: editControHouseAfFull,
+                                                      decoration: InputDecoration(
+                                                        border: InputBorder.none,
+                                                        //hintText: 'Enter a search term'
+                                                      ),
+                                                      textAlign: TextAlign.center,
+                                                      style: TextStyle(fontSize: 20),
+
+                                                      onChanged: (value) => {
+                                                        //total_family_afected_full = editControllerAfl.text as int,
+                                                        debugPrint("total ${editControHouseAfFull.text}"),
+
+                                                        if(j==1){
+                                                          listTitle[i].fullAffectedFamily = total_family_afected_full as String,
+                                                          for (var i = 0; i < listTitle.length; i++) {
+                                                            fm_full_aff = listTitle[i].fullAffectedFamily as int,
+                                                            family_full_af =  family_full_af+fm_full_aff,
+                                                            debugPrint('total: $family_full_af')
+                                                          }
+                                                        }
+                                                      },
+
+                                                    ),
+
+                                                  ),
+                                                ],
+
+                                              );
+                                            }
+                                            if(j==4){
+                                              return new Row(
+                                                children: <Widget>[
+                                                  Container(
+                                                    padding: const EdgeInsets.all(3.0),
+                                                    decoration: BoxDecoration(
+                                                        border: Border.all(color: Colors.black12)
+                                                    ),
+                                                    height: 55,
+                                                    width: 125.0,
+                                                    child: TextField(
+                                                      controller: editControHouseAfHalf,
+                                                      decoration: InputDecoration(
+                                                        border: InputBorder.none,
+                                                        //hintText: 'Enter a search term'
+                                                      ),
+                                                      textAlign: TextAlign.center,
+                                                      style: TextStyle(fontSize: 20),
+
+                                                      onChanged: (value) => {
+                                                        //total_family_afected_full = editControllerAfl.text as int,
+                                                        debugPrint("total ${editControHouseAfHalf.text}"),
+
+                                                        if(j==1){
+                                                          listTitle[i].fullAffectedFamily = total_family_afected_full as String,
+                                                          for (var i = 0; i < listTitle.length; i++) {
+                                                            fm_full_aff = listTitle[i].fullAffectedFamily as int,
+                                                            family_full_af =  family_full_af+fm_full_aff,
+                                                            debugPrint('total: $family_full_af')
+                                                          }
+                                                        }
+                                                      },
+
+                                                    ),
+
+                                                  ),
+                                                ],
+
+                                              );
+                                            }
+                                            if(j==5){
+                                              return new Container(
+                                                //padding: const EdgeInsets.all(3.0),
+                                                decoration: BoxDecoration(
+                                                    border: Border.all(color: Colors.black12)
+                                                ),
+                                                height: 55,
+
+                                                width: 250.0,
+                                                child: Flexible(
+
+                                                  child: TextField(
+                                                    controller: editControDeadDiv,
+                                                    decoration: InputDecoration(
+                                                      border: InputBorder.none,
+                                                      //hintText: 'Enter a search term'
+                                                    ),
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(fontSize: 20),
+                                                    //controller: editController,
+                                                    onChanged: (value) => {
+                                                      debugPrint("total ${editControDeadDiv.text}"),
+                                                    },
+                                                  ),
+                                                ),
+
+                                              );
+                                            }
+                                            if(j==6){
+                                              return new Container(
+                                                //padding: const EdgeInsets.all(3.0),
+                                                decoration: BoxDecoration(
+                                                    border: Border.all(color: Colors.black12)
+                                                ),
+                                                height: 55,
+
+                                                width: 250.0,
+                                                child: Flexible(
+
+                                                  child: TextField(
+                                                    controller: editControInjured,
+                                                    decoration: InputDecoration(
+                                                      border: InputBorder.none,
+                                                      //hintText: 'Enter a search term'
+                                                    ),
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(fontSize: 20),
+                                                    //controller: editController,
+                                                    onChanged: (value) => {
+                                                      debugPrint("total ${editControInjured.text}"),
+                                                    },
+                                                  ),
+                                                ),
+
+                                              );
+                                            }
+                                            if(j==7){
+                                              return new Container(
+                                                //padding: const EdgeInsets.all(3.0),
+                                                decoration: BoxDecoration(
+                                                    border: Border.all(color: Colors.black12)
+                                                ),
+                                                height: 55,
+
+                                                width: 250.0,
+                                                child: Flexible(
+                                                  child: TextField(
+                                                    controller: editControshelterNum,
+                                                    decoration: InputDecoration(
+                                                      border: InputBorder.none,
+                                                      //hintText: 'Enter a search term'
+                                                    ),
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(fontSize: 20),
+                                                    //controller: editController,
+                                                    onChanged: (value) => {
+                                                      debugPrint("total ${editControshelterNum.text}"),
+                                                    },
+                                                  ),
+                                                ),
+
+                                              );
+                                            }
+                                            if(j==8){
+                                              return new Container(
+                                                //padding: const EdgeInsets.all(3.0),
+                                                decoration: BoxDecoration(
+                                                    border: Border.all(color: Colors.black12)
+                                                ),
+                                                height: 55,
+
+                                                width: 250.0,
+                                                child: Flexible(
+
+                                                  child: TextField(
+                                                    controller: editControsPeoplehelterNum,
+                                                    decoration: InputDecoration(
+                                                      border: InputBorder.none,
+                                                      //hintText: 'Enter a search term'
+                                                    ),
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(fontSize: 20),
+                                                    //controller: editController,
+                                                    onChanged: (value) => {
+                                                      debugPrint("total ${editControsPeoplehelterNum.text}"),
+                                                    },
+                                                  ),
+                                                ),
+
+                                              );
+                                            }
+                                            if(j==9){
+                                              return new Container(
+                                                //padding: const EdgeInsets.all(3.0),
+                                                decoration: BoxDecoration(
+                                                    border: Border.all(color: Colors.black12)
+                                                ),
+                                                height: 55,
+
+                                                width: 250.0,
+                                                child: Flexible(
+                                                  child: TextField(
+                                                    controller: editControDeadDiv,
+                                                    decoration: InputDecoration(
+                                                      border: InputBorder.none,
+                                                      //hintText: 'Enter a search term'
+                                                    ),
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(fontSize: 20),
+                                                    //controller: editController,
+                                                    onChanged: (value) => {
+                                                      debugPrint("total ${editControDeadDiv.text}"),
+                                                    },
+                                                  ),
+                                                ),
+
+                                              );
+                                            }
+
+                                          }),
+                                        );
+                                      },
+                                    ),
+                                  )
+
+
+                                ],
+                              ),
+                              Row(
+                                children: <Widget>[
+
+
+                                  Container(
+                                      padding: const EdgeInsets.all(3.0),
+                                      decoration: BoxDecoration(
+                                          color: Colors.black12,
+                                          border: Border.all(color: Colors.black12)
+                                      ),
+
+                                      width: 250.0,
+                                      height: 40,
+                                      child: new Text(
+                                          "Total",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 15
+                                          )
+                                      )
+                                  ),
+
+                                  Column(
+                                    children: <Widget>[
+
+                                      Row(
+                                        children: <Widget>[
+                                          Container(
+                                              padding: const EdgeInsets.all(3.0),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.black12,
+                                                  border: Border.all(color: Colors.black12)
+                                              ),
+                                              height: 40,
+                                              width: 125.0,
+                                              child: new Text(
+                                                  '$total_family_afected_full',
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 15
+                                                  )
+                                              )
+                                          ),
+
+                                          Container(
+                                              padding: const EdgeInsets.all(3.0),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.black12,
+                                                  border: Border.all(color: Colors.black12)
+                                              ),
+                                              height: 40,
+                                              width: 125.0,
+                                              child: new Text(
+                                                  "",
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 15
+                                                  )
+                                              )
+                                          ),
+
+                                        ],
+
+                                      )
+
+                                    ],
+
+                                  ),
+
+                                  Column(
+                                    children: <Widget>[
+                                      Row(
+                                        children: <Widget>[
+                                          Container(
+                                              padding: const EdgeInsets.all(3.0),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.black12,
+                                                  border: Border.all(color: Colors.black12)
+                                              ),
+                                              height: 40,
+                                              width: 125.0,
+                                              child: new Text(
+                                                  "",
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 15
+                                                  )
+                                              )
+                                          ),
+
+                                          Container(
+                                              padding: const EdgeInsets.all(3.0),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.black12,
+                                                  border: Border.all(color: Colors.black12)
+                                              ),
+                                              height: 40,
+                                              width: 125.0,
+                                              child: new Text(
+                                                  "",
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 15
+                                                  )
+                                              )
+                                          ),
+
+                                        ],
+
+                                      )
+
+                                    ],
+
+                                  ),
+
+                                  Container(
+                                      padding: const EdgeInsets.all(3.0),
+                                      decoration: BoxDecoration(
+                                          color: Colors.black12,
+                                          border: Border.all(color: Colors.black12)
+                                      ),
+                                      height: 40,
+                                      width: 250.0,
+                                      child: new Text(
+                                          "",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 20
+                                          )
+                                      )
+                                  ),
+
+                                  Container(
+                                      padding: const EdgeInsets.all(3.0),
+                                      decoration: BoxDecoration(
+                                          color: Colors.black12,
+                                          border: Border.all(color: Colors.black12)
+                                      ),
+                                      height: 40,
+                                      width: 250.0,
+                                      child: new Text(
+                                          "",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 20
+                                          )
+                                      )
+                                  ),
+                                  Container(
+                                      padding: const EdgeInsets.all(3.0),
+                                      decoration: BoxDecoration(
+                                          color: Colors.black12,
+                                          border: Border.all(color: Colors.black12)
+                                      ),
+                                      height: 40,
+                                      width: 250.0,
+                                      child: new Text(
+                                          "",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 20
+                                          )
+                                      )
+                                  ),
+
+                                  Container(
+                                      padding: const EdgeInsets.all(3.0),
+                                      decoration: BoxDecoration(
+                                          color: Colors.black12,
+                                          border: Border.all(color: Colors.black12)
+                                      ),
+                                      height: 40,
+                                      width: 250.0,
+                                      child: new Text(
+                                          "",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 20
+                                          )
+                                      )
+                                  ),
+
+                                  Container(
+                                      padding: const EdgeInsets.all(3.0),
+                                      decoration: BoxDecoration(
+                                          color: Colors.black12,
+                                          border: Border.all(color: Colors.black12)
+                                      ),
+                                      height: 40,
+                                      width: 250.0,
+                                      child: new Text(
+                                          "",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 20
+                                          )
+                                      )
+                                  ),
+
+
+                                ],
+                              ),
+
+                            ],
+
+                          ),
+
+                        ),
                       ),
+
+
+
 
 
                     ],
@@ -305,6 +1188,14 @@ class DataModel {
       this.partialAffectedHouse,this.dead,this.injured,this.shelterCenter,this.takenShelter,this.comment);
 
 }
+class DataModel1 {
+  String name,username,userid,email,mobile;
+
+  DataModel1(this.name, this.username, this.userid, this.email, this.mobile);
+
+}
+
+
 class MyList extends StatefulWidget {
   MyList({Key key}) : super(key: key);
 
@@ -319,21 +1210,40 @@ class _MyAppState extends State<MyList> {
     User selectedUser;
     List<User> users = <User>[const User('Foo'), const User('Bar')];
 
-    List <DataModel> listTitle = new List();
-    double height = MediaQuery.of(context).size.height;
+    List <DataModel1> listTitle = new List();
+
+//              DataModel dataModel = new DataModel('name', 'username', 'id', 'email', 'mobile');
+//              DataModel dataMode2 = new DataModel('sadi2', 'shah2', '1', 'sadi@mail.com', '01723335972');
+//              DataModel dataMode3 = new DataModel('sadi3', 'shah3', '1', 'sadi@mail.com', '01723335972');
+//              DataModel dataMode4 = new DataModel('sadi4', 'shah4', '1', 'sadi@mail.com', '01723335972');
+//              DataModel dataMode5 = new DataModel('sadi5', 'shah5', '1', 'sadi@mail.com', '01723335972');
+//              DataModel dataMode6 = new DataModel('sadi6', 'shah6', '6', 'sadi@mail.com', '01723335972');
+//
+//              listTitle.add(dataModel);
+//              listTitle.add(dataMode2);
+//              listTitle.add(dataMode3);
+//              listTitle.add(dataMode4);
+//              listTitle.add(dataMode5);
+//              listTitle.add(dataMode6);
+//              listTitle.add(dataMode3);
 
     var pos = 1;
-    for (var i = 0; i < 15; i++) {
+    for (var i = 0; i < 10; i++) {
+      // if(i==0){
+//                  DataModel dataModel = new DataModel('name', 'username', 'id', 'email', 'mobile');
+//                  listTitle.add(dataModel);
       pos+=i;
-      DataModel dataMode2 = new DataModel('', '', '', '', '','', '', '', '', '');
+      //}else{
+      DataModel1 dataMode2 = new DataModel1("Sadi$pos", 'shah$pos', '1', 'sadi@mail.com', '01723335972');
       listTitle.add(dataMode2);
-      pos-=i;
 
+      pos-=i;
+      //}
     }
 
 
-//    String name = listTitle.elementAt(3).username;
-//    debugPrint('name: $name');
+    String name = listTitle.elementAt(3).username;
+    debugPrint('name: $name');
 
 
     List <String> listRow = new List();
@@ -349,569 +1259,461 @@ class _MyAppState extends State<MyList> {
           children: <Widget>[
             Row(
               children: <Widget>[
-
-
                 Container(
-                  padding: const EdgeInsets.all(3.0),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black12)
-                  ),
-
-                    width: 300.0,
-                    height: 55,
-                    child: new Text(
-                        "Pourashava/Union",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20
-                        )
-                    )
-                ),
-
-                Column(
-                  children: <Widget>[
-                    Container(
-                        padding: const EdgeInsets.all(3.0),
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black12)
-                        ),
-
-                        width: 300.0,
-                        height: 30,
-                        child: new Text(
-                            "No of Family Affected",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 20
-                            )
-                        )
-                    ),
-
-                    Row(
-                      children: <Widget>[
-                        Container(
-                            padding: const EdgeInsets.all(3.0),
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.black12)
-                            ),
-                            height: 25,
-                            width: 150.0,
-                            child: new Text(
-                                "Fully Affected",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 15
-                                )
-                            )
-                        ),
-
-                        Container(
-                            padding: const EdgeInsets.all(3.0),
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.black12)
-                            ),
-                            height: 25,
-                            width: 150.0,
-                            child: new Text(
-                                "Partially Affected",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 15
-                                )
-                            )
-                        ),
-
-                      ],
-
-                    )
-
-                  ],
-
-                ),
-
-                Column(
-                  children: <Widget>[
-                    Container(
-                        padding: const EdgeInsets.all(3.0),
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black12)
-                        ),
-
-                        width: 300.0,
-                        height: 30,
-                        child: new Text(
-                            "No of House Affected",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 20
-                            )
-                        )
-                    ),
-
-                    Row(
-                      children: <Widget>[
-                        Container(
-                            padding: const EdgeInsets.all(3.0),
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.black12)
-                            ),
-                            height: 25,
-                            width: 150.0,
-                            child: new Text(
-                                "Fully Affected",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 15
-                                )
-                            )
-                        ),
-
-                        Container(
-                            padding: const EdgeInsets.all(3.0),
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.black12)
-                            ),
-                            height: 25,
-                            width: 150.0,
-                            child: new Text(
-                                "Partially Affected",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 15
-                                )
-                            )
-                        ),
-
-                      ],
-
-                    )
-
-                  ],
-
-                ),
-
-                Container(
-                    padding: const EdgeInsets.all(3.0),
                     decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black12)
+                      color: const Color(0xff5A6268),
+//                          image: DecorationImage(
+//                            image: ExactAssetImage('images/flowers.jpeg'),
+//                            fit: BoxFit.cover,
+//                          ),
+                      border: Border.all(
+                        color: Colors.white,
+                        width: 2.0,
+                      ),
                     ),
-                    height: 55,
                     width: 300.0,
                     child: new Text(
-                        "No. of Deadiv",
+                        "Name",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20
+                            color: Colors.amberAccent,
+                            fontSize: 30
                         )
                     )
                 ),
 
                 Container(
-                    padding: const EdgeInsets.all(3.0),
                     decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black12)
+                      color: const Color(0xff5A6268),
+//                          image: DecorationImage(
+//                            image: ExactAssetImage('images/flowers.jpeg'),
+//                            fit: BoxFit.cover,
+//                          ),
+                      border: Border.all(
+                        color: Colors.white,
+                        width: 2.0,
+                      ),
                     ),
-                    height: 55,
                     width: 300.0,
                     child: new Text(
-                        "No. of Injured",
+                        "username",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20
-                        )
-                    )
-                ),
-                  Container(
-                    padding: const EdgeInsets.all(3.0),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black12)
-                    ),
-                      height: 55,
-                    width: 300.0,
-                    child: new Text(
-                        "No of Shelter Center",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20
+                            color: Colors.amberAccent,
+                            fontSize: 30
                         )
                     )
                 ),
 
                 Container(
-                    padding: const EdgeInsets.all(3.0),
                     decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black12)
+                      color: const Color(0xff5A6268),
+//                          image: DecorationImage(
+//                            image: ExactAssetImage('images/flowers.jpeg'),
+//                            fit: BoxFit.cover,
+//                          ),
+                      border: Border.all(
+                        color: Colors.white,
+                        width: 2.0,
+                      ),
                     ),
-                    height: 55,
                     width: 300.0,
                     child: new Text(
-                        "No of People Taken Shelter",
+                        "id",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20
+                            color: Colors.amberAccent,
+                            fontSize: 30
                         )
                     )
                 ),
 
                 Container(
-                    padding: const EdgeInsets.all(3.0),
                     decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black12)
+                      color: const Color(0xff5A6268),
+//                          image: DecorationImage(
+//                            image: ExactAssetImage('images/flowers.jpeg'),
+//                            fit: BoxFit.cover,
+//                          ),
+                      border: Border.all(
+                        color: Colors.white,
+                        width: 2.0,
+                      ),
                     ),
-                    height: 55,
                     width: 300.0,
                     child: new Text(
-                        "Comments",
+                        "email",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20
+                            color: Colors.amberAccent,
+                            fontSize: 30
                         )
                     )
                 ),
 
-
+                Container(
+                    decoration: BoxDecoration(
+                      color: const Color(0xff5A6268),
+//                          image: DecorationImage(
+//                            image: ExactAssetImage('images/flowers.jpeg'),
+//                            fit: BoxFit.cover,
+//                          ),
+                      border: Border.all(
+                        color: Colors.white,
+                        width: 2.0,
+                      ),
+                    ),
+                    width: 300.0,
+                    child: new Text(
+                        "Mobile",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.amberAccent,
+                            fontSize: 30
+                        )
+                    )
+                ),
               ],
             ),
             Row(
               children: <Widget>[
-                //SizedBox(
                 SizedBox(
-                  width: 2400.0,
-                  //height: 270.0,
-                  height: height/2.3,
+                  width: 3000.0,
+                  height: 260.0,
 
                   child: ListView.builder(
 
                     itemCount: listTitle.length,
                     itemBuilder: (BuildContext context, int i) {
-
+                      //log('ipos: $i');
+                      //debugPrint('ipos: $i');
                       listRow.clear();
-                      listRow.add(listTitle.elementAt(i).unionName);
-                      listRow.add(listTitle.elementAt(i).fullAffectedFamily);
-                      listRow.add(listTitle.elementAt(i).partialAffectedFamily);
 
-                      listRow.add(listTitle.elementAt(i).fullAffectedHouse);
-                      listRow.add(listTitle.elementAt(i).partialAffectedHouse);
+                      listRow.add(listTitle.elementAt(i).name);
+                      listRow.add(listTitle.elementAt(i).email);
+                      listRow.add(listTitle.elementAt(i).mobile);
+                      listRow.add(listTitle.elementAt(i).userid);
+                      listRow.add(listTitle.elementAt(i).username);
+                      listRow.add(listTitle.elementAt(i).username);
+                      listRow.add(listTitle.elementAt(i).username);
+                      listRow.add(listTitle.elementAt(i).username);
+                      listRow.add(listTitle.elementAt(i).username);
+                      listRow.add(listTitle.elementAt(i).username);
 
-                      listRow.add(listTitle.elementAt(i).dead);
-                      listRow.add(listTitle.elementAt(i).injured);
-                      listRow.add(listTitle.elementAt(i).shelterCenter);
-                      listRow.add(listTitle.elementAt(i).takenShelter);
-                      listRow.add(listTitle.elementAt(i).comment);
+
 
                       return new Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: new List.generate(listRow.length, (int j) {
+                          //log('j pos: $j');
+                          //debugPrint('jpos: $j');
 
-                          if(j==1 || j==2 || j==3 || j==4){
-                            return new Row(
-                              children: <Widget>[
-                                Container(
-                                  padding: const EdgeInsets.all(3.0),
-                                  decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.black12)
-                                  ),
-                                  height: 55,
-                                  width: 150.0,
-                                  child: new Text(
-                                      listRow.elementAt(j),
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          color: Colors.red,
-                                          fontSize: 25
-                                      )
-                                  ),
-                                ),
-                              ],
+//                  if(i==0){
+//                    return new Container(
+//                        decoration: BoxDecoration(
+//                          color: const Color(0xff5A6268),
+////                          image: DecorationImage(
+////                            image: ExactAssetImage('images/flowers.jpeg'),
+////                            fit: BoxFit.cover,
+////                          ),
+//                          border: Border.all(
+//                            color: Colors.white,
+//                            width: 2.0,
+//                          ),
+//                        ),
+//                        width: 300.0,
+//                        child: new Text(
+//                            listRow.elementAt(j),
+//                            textAlign: TextAlign.center,
+//                            style: TextStyle(
+//                                color: Colors.amberAccent,
+//                                fontSize: 30
+//                            )
+//                        )
+//                    );
+//
+//                  }else{
+                          return new Container(
+                            decoration: BoxDecoration(
+                              color: const Color(0xff7c94b6),
 
-                            );
-                          }else{
-                            return new Container(
-                              padding: const EdgeInsets.all(3.0),
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.black12)
+                              border: Border.all(
+                                color: Colors.white,
+                                width: 2.0,
                               ),
-                              height: 55,
+                            ),
 
-                              width: 300.0,
-                              child: new Text(
-                                  listRow.elementAt(j),
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      color: Colors.red,
-                                      fontSize: 25
-                                  )
+                            width: 300.0,
+                            child: TextField(
+                              decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: 'Enter a search term'
                               ),
-                            );
-                          }
+                            ),
+//                            child: new Text(
+//                                listRow.elementAt(j),
+//                                textAlign: TextAlign.center,
+//                                style: TextStyle(
+//                                    color: Colors.red,
+//                                    fontSize: 25
+//                                )
+//                            ),
 
+//                      child: new DropdownButton<User>(
+//                        hint: new Text("Select a user"),
+//                        value: selectedUser,
+//                        onChanged: (User newValue) {
+//                          setState(() {
+//                            selectedUser = newValue;
+//                          });
+//                        },
+//                        items: users.map((User user) {
+//                          return new DropdownMenuItem<User>(
+//                            value: user,
+//                            child: new Text(
+//                              user.name,
+//                              style: new TextStyle(color: Colors.black),
+//                            ),
+//                          );
+//                        }).toList(),
+//                      ),
+
+                          );
                           // }
                         }),
                       );
                     },
+
+
                   ),
                 )
-
-
+//              Row(
+//
+//                children: <Widget>[
+//
+//                  Container(
+//                      decoration: BoxDecoration(
+//                        color: const Color(0xff5A6268),
+////                          image: DecorationImage(
+////                            image: ExactAssetImage('images/flowers.jpeg'),
+////                            fit: BoxFit.cover,
+////                          ),
+//                        border: Border.all(
+//                          color: Colors.white,
+//                          width: 2.0,
+//                        ),
+//                      ),
+//                      width: 300.0,
+//                      child: new Text(
+//                          "Name",
+//                          textAlign: TextAlign.center,
+//                          style: TextStyle(
+//                              color: Colors.amberAccent,
+//                              fontSize: 30
+//                          )
+//                      )
+//                  ),
+//
+//                  Container(
+//                      decoration: BoxDecoration(
+//                        color: const Color(0xff5A6268),
+////                          image: DecorationImage(
+////                            image: ExactAssetImage('images/flowers.jpeg'),
+////                            fit: BoxFit.cover,
+////                          ),
+//                        border: Border.all(
+//                          color: Colors.white,
+//                          width: 2.0,
+//                        ),
+//                      ),
+//                      width: 300.0,
+//                      child: new Text(
+//                          "username",
+//                          textAlign: TextAlign.center,
+//                          style: TextStyle(
+//                              color: Colors.amberAccent,
+//                              fontSize: 30
+//                          )
+//                      )
+//                  ),
+//
+//                  Container(
+//                      decoration: BoxDecoration(
+//                        color: const Color(0xff5A6268),
+////                          image: DecorationImage(
+////                            image: ExactAssetImage('images/flowers.jpeg'),
+////                            fit: BoxFit.cover,
+////                          ),
+//                        border: Border.all(
+//                          color: Colors.white,
+//                          width: 2.0,
+//                        ),
+//                      ),
+//                      width: 300.0,
+//                      child: new Text(
+//                          "id",
+//                          textAlign: TextAlign.center,
+//                          style: TextStyle(
+//                              color: Colors.amberAccent,
+//                              fontSize: 30
+//                          )
+//                      )
+//                  ),
+//
+//                  Container(
+//                      decoration: BoxDecoration(
+//                        color: const Color(0xff5A6268),
+////                          image: DecorationImage(
+////                            image: ExactAssetImage('images/flowers.jpeg'),
+////                            fit: BoxFit.cover,
+////                          ),
+//                        border: Border.all(
+//                          color: Colors.white,
+//                          width: 2.0,
+//                        ),
+//                      ),
+//                      width: 300.0,
+//                      child: new Text(
+//                          "email",
+//                          textAlign: TextAlign.center,
+//                          style: TextStyle(
+//                              color: Colors.amberAccent,
+//                              fontSize: 30
+//                          )
+//                      )
+//                  ),
+//
+//                  Container(
+//                      decoration: BoxDecoration(
+//                        color: const Color(0xff5A6268),
+////                          image: DecorationImage(
+////                            image: ExactAssetImage('images/flowers.jpeg'),
+////                            fit: BoxFit.cover,
+////                          ),
+//                        border: Border.all(
+//                          color: Colors.white,
+//                          width: 2.0,
+//                        ),
+//                      ),
+//                      width: 300.0,
+//                      child: new Text(
+//                          "Mobile",
+//                          textAlign: TextAlign.center,
+//                          style: TextStyle(
+//                              color: Colors.amberAccent,
+//                              fontSize: 30
+//                          )
+//                      )
+//                  ),
+//                ],
+//              ),
               ],
             ),
-            Row(
-              children: <Widget>[
 
 
-                Container(
-                    padding: const EdgeInsets.all(3.0),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black12)
-                    ),
 
-                    width: 300.0,
-                    height: 40,
-                    child: new Text(
-                        "Pourashava/Union",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 15
-                        )
-                    )
-                ),
-
-                Column(
-                  children: <Widget>[
-//                    Container(
-//                        padding: const EdgeInsets.all(3.0),
-//                        decoration: BoxDecoration(
-//                            border: Border.all(color: Colors.black12)
-//                        ),
-//
-//                        width: 300.0,
-//                        height: 30,
-//                        child: new Text(
-//                            "No of Family Affected",
-//                            textAlign: TextAlign.center,
-//                            style: TextStyle(
-//                                color: Colors.black,
-//                                fontSize: 20
-//                            )
-//                        )
-//                    ),
-
-                    Row(
-                      children: <Widget>[
-                        Container(
-                            padding: const EdgeInsets.all(3.0),
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.black12)
-                            ),
-                            height: 40,
-                            width: 150.0,
-                            child: new Text(
-                                "Fully Affected",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 15
-                                )
-                            )
-                        ),
-
-                        Container(
-                            padding: const EdgeInsets.all(3.0),
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.black12)
-                            ),
-                            height: 40,
-                            width: 150.0,
-                            child: new Text(
-                                "Partially Affected",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 15
-                                )
-                            )
-                        ),
-
-                      ],
-
-                    )
-
-                  ],
-
-                ),
-
-                Column(
-                  children: <Widget>[
-//                    Container(
-//                        padding: const EdgeInsets.all(3.0),
-//                        decoration: BoxDecoration(
-//                            border: Border.all(color: Colors.black12)
-//                        ),
-//
-//                        width: 300.0,
-//                        height: 30,
-//                        child: new Text(
-//                            "No of House Affected",
-//                            textAlign: TextAlign.center,
-//                            style: TextStyle(
-//                                color: Colors.black,
-//                                fontSize: 20
-//                            )
-//                        )
-//                    ),
-
-                    Row(
-                      children: <Widget>[
-                        Container(
-                            padding: const EdgeInsets.all(3.0),
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.black12)
-                            ),
-                            height: 40,
-                            width: 150.0,
-                            child: new Text(
-                                "Fully Affected",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 15
-                                )
-                            )
-                        ),
-
-                        Container(
-                            padding: const EdgeInsets.all(3.0),
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.black12)
-                            ),
-                            height: 40,
-                            width: 150.0,
-                            child: new Text(
-                                "Partially Affected",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 15
-                                )
-                            )
-                        ),
-
-                      ],
-
-                    )
-
-                  ],
-
-                ),
-
-                Container(
-                    padding: const EdgeInsets.all(3.0),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black12)
-                    ),
-                    height: 40,
-                    width: 300.0,
-                    child: new Text(
-                        "No. of Deadiv",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20
-                        )
-                    )
-                ),
-
-                Container(
-                    padding: const EdgeInsets.all(3.0),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black12)
-                    ),
-                    height: 40,
-                    width: 300.0,
-                    child: new Text(
-                        "No. of Injured",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20
-                        )
-                    )
-                ),
-                Container(
-                    padding: const EdgeInsets.all(3.0),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black12)
-                    ),
-                    height: 40,
-                    width: 300.0,
-                    child: new Text(
-                        "No of Shelter Center",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20
-                        )
-                    )
-                ),
-
-                Container(
-                    padding: const EdgeInsets.all(3.0),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black12)
-                    ),
-                    height: 40,
-                    width: 300.0,
-                    child: new Text(
-                        "No of People Taken Shelter",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20
-                        )
-                    )
-                ),
-
-                Container(
-                    padding: const EdgeInsets.all(3.0),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black12)
-                    ),
-                    height: 40,
-                    width: 300.0,
-                    child: new Text(
-                        "Comments",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20
-                        )
-                    )
-                ),
-
-
-              ],
-            ),
 
           ],
 
         ),
 
+
+//        child: new SizedBox(
+//          width: 1500.0,
+//          child: new ListView.builder(
+//            itemCount: listTitle.length,
+//            itemBuilder: (BuildContext context, int i) {
+//              //log('ipos: $i');
+//              //debugPrint('ipos: $i');
+//              listRow.clear();
+//
+//              listRow.add(listTitle.elementAt(i).name);
+//              listRow.add(listTitle.elementAt(i).email);
+//              listRow.add(listTitle.elementAt(i).mobile);
+//              listRow.add(listTitle.elementAt(i).userid);
+//              listRow.add(listTitle.elementAt(i).username);
+//
+//
+//
+//              return new Row(
+//                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                children: new List.generate(listRow.length, (int j) {
+//                  //log('j pos: $j');
+//                  //debugPrint('jpos: $j');
+//
+////                  if(i==0){
+////                    return new Container(
+////                        decoration: BoxDecoration(
+////                          color: const Color(0xff5A6268),
+//////                          image: DecorationImage(
+//////                            image: ExactAssetImage('images/flowers.jpeg'),
+//////                            fit: BoxFit.cover,
+//////                          ),
+////                          border: Border.all(
+////                            color: Colors.white,
+////                            width: 2.0,
+////                          ),
+////                        ),
+////                        width: 300.0,
+////                        child: new Text(
+////                            listRow.elementAt(j),
+////                            textAlign: TextAlign.center,
+////                            style: TextStyle(
+////                                color: Colors.amberAccent,
+////                                fontSize: 30
+////                            )
+////                        )
+////                    );
+////
+////                  }else{
+//                    return new Container(
+//                      decoration: BoxDecoration(
+//                        color: const Color(0xff7c94b6),
+//
+//                        border: Border.all(
+//                          color: Colors.white,
+//                          width: 2.0,
+//                        ),
+//                      ),
+//
+//                      width: 300.0,
+//                          child: new Text(
+//                              listRow.elementAt(j),
+//                              textAlign: TextAlign.center,
+//                              style: TextStyle(
+//                                  color: Colors.red,
+//                                  fontSize: 25
+//                              )
+//                          ),
+//
+////                      child: new DropdownButton<User>(
+////                        hint: new Text("Select a user"),
+////                        value: selectedUser,
+////                        onChanged: (User newValue) {
+////                          setState(() {
+////                            selectedUser = newValue;
+////                          });
+////                        },
+////                        items: users.map((User user) {
+////                          return new DropdownMenuItem<User>(
+////                            value: user,
+////                            child: new Text(
+////                              user.name,
+////                              style: new TextStyle(color: Colors.black),
+////                            ),
+////                          );
+////                        }).toList(),
+////                      ),
+//
+//                    );
+//                 // }
+//                }),
+//              );
+//            },
+//          ),
+//        ),
       ),
     );
   }
-
-
 }
+
