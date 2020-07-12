@@ -47,10 +47,6 @@ class _MyHomePageState extends State<contactPage> {
       body: Column(
         children: <Widget>[
 
-          SizedBox(
-            height: 10.0,
-          ),
-
           new Container(
 
             //child: MyList(),
@@ -266,7 +262,7 @@ class _MyHomePageState extends State<contactPage> {
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 20
+                                            fontSize: 15
                                         )
                                     ),
                                   );
@@ -285,7 +281,7 @@ class _MyHomePageState extends State<contactPage> {
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 20
+                                            fontSize: 15
                                         )
                                     ),
                                   );
@@ -304,7 +300,7 @@ class _MyHomePageState extends State<contactPage> {
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 20
+                                            fontSize: 15
                                         )
                                     ),
                                   );
@@ -323,7 +319,7 @@ class _MyHomePageState extends State<contactPage> {
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 20
+                                            fontSize: 15
                                         )
                                     ),
                                   );
@@ -342,7 +338,7 @@ class _MyHomePageState extends State<contactPage> {
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 20
+                                            fontSize: 15
                                         )
                                     ),
                                   );
@@ -361,7 +357,7 @@ class _MyHomePageState extends State<contactPage> {
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 20
+                                            fontSize: 15
                                         )
                                     ),
                                   );
@@ -380,7 +376,7 @@ class _MyHomePageState extends State<contactPage> {
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 20
+                                            fontSize: 15
                                         )
                                     ),
                                   );

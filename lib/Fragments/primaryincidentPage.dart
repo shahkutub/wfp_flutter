@@ -78,7 +78,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
       items.add(
         DropdownMenuItem(
           value: company,
-          child: Text(company.name, style: TextStyle(fontSize: 18.0),),
+          child: Text(company.name, style: TextStyle(fontSize: 15.0),),
         ),
       );
     }
@@ -203,7 +203,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Text("Division:",style: TextStyle(fontSize:17.0,)),
+                              Text("Division:",style: TextStyle(fontSize:15.0,)),
                               Text("Khulna"),
                             ],
                           ),
@@ -212,7 +212,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Text("District:",style: TextStyle(fontSize:17.0)),
+                              Text("District:",style: TextStyle(fontSize:15.0)),
                               Text("Bagerhat"),
                             ],
                           ),
@@ -220,7 +220,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Text("Upazila:",style: TextStyle(fontSize:17.0 )),
+                              Text("Upazila:",style: TextStyle(fontSize:15.0 )),
                               Text("Bagerhat Sadar Upazila")
                             ],
                           ),
@@ -285,33 +285,36 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                           scrollDirection: Axis.horizontal,
 
                           child: new Column(
-
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
+                                  Center(
+                                    child:Container(
+                                        padding: const EdgeInsets.all(3.0),
+                                        decoration: BoxDecoration(
+                                            color: Colors.black12,
+                                            border: Border.all(color: Colors.black12)
+                                        ),
 
-
-                                  Container(
-
-                                      padding: const EdgeInsets.all(3.0),
-                                      decoration: BoxDecoration(
-                                          color: Colors.black12,
-                                          border: Border.all(color: Colors.black12)
-                                      ),
-
-                                      width: 250.0,
-                                      height: 55,
-                                      child: new Text(
-                                          "Pourashava/Union",
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 20
-                                          )
-                                      )
+                                        width: 250.0,
+                                        height: 55,
+                                        child: new Text(
+                                            "Pourashava/Union",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 15
+                                            )
+                                        )
+                                    ),
                                   ),
 
+
+
                                   Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
                                       Container(
                                           padding: const EdgeInsets.all(3.0),
@@ -327,12 +330,13 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
                                                   color: Colors.black,
-                                                  fontSize: 20
+                                                  fontSize: 15
                                               )
                                           )
                                       ),
 
                                       Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
                                         children: <Widget>[
                                           Container(
                                               padding: const EdgeInsets.all(3.0),
@@ -394,7 +398,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
                                                   color: Colors.black,
-                                                  fontSize: 20
+                                                  fontSize: 15
                                               )
                                           )
                                       ),
@@ -459,7 +463,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                               color: Colors.black,
-                                              fontSize: 20
+                                              fontSize: 15
                                           )
                                       )
                                   ),
@@ -477,7 +481,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                               color: Colors.black,
-                                              fontSize: 20
+                                              fontSize: 15
                                           )
                                       )
                                   ),
@@ -494,7 +498,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                               color: Colors.black,
-                                              fontSize: 20
+                                              fontSize: 15
                                           )
                                       )
                                   ),
@@ -512,7 +516,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                               color: Colors.black,
-                                              fontSize: 20
+                                              fontSize: 15
                                           )
                                       )
                                   ),
@@ -530,7 +534,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                               color: Colors.black,
-                                              fontSize: 20
+                                              fontSize: 15
                                           )
                                       )
                                   ),
@@ -587,7 +591,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                         color: Colors.black,
-                                                        fontSize: 20
+                                                        fontSize: 15
                                                     )
                                                 ),
                                               );
@@ -609,7 +613,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                                         //hintText: 'Enter a search term'
                                                       ),
                                                       textAlign: TextAlign.center,
-                                                      style: TextStyle(fontSize: 20),
+                                                      style: TextStyle(fontSize: 15),
 
                                                       onChanged: (value) => {
                                                         //total_family_afected_full = editControllerAfl.text as int,
@@ -649,7 +653,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                                         //hintText: 'Enter a search term'
                                                       ),
                                                       textAlign: TextAlign.center,
-                                                      style: TextStyle(fontSize: 20),
+                                                      style: TextStyle(fontSize: 15),
 
                                                       onChanged: (value) => {
                                                         //total_family_afected_full = editControllerAfl.text as int,
@@ -689,7 +693,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                                         //hintText: 'Enter a search term'
                                                       ),
                                                       textAlign: TextAlign.center,
-                                                      style: TextStyle(fontSize: 20),
+                                                      style: TextStyle(fontSize: 15),
 
                                                       onChanged: (value) => {
                                                         //total_family_afected_full = editControllerAfl.text as int,
@@ -729,7 +733,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                                         //hintText: 'Enter a search term'
                                                       ),
                                                       textAlign: TextAlign.center,
-                                                      style: TextStyle(fontSize: 20),
+                                                      style: TextStyle(fontSize: 15),
 
                                                       onChanged: (value) => {
                                                         //total_family_afected_full = editControllerAfl.text as int,
@@ -770,7 +774,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                                       //hintText: 'Enter a search term'
                                                     ),
                                                     textAlign: TextAlign.center,
-                                                    style: TextStyle(fontSize: 20),
+                                                    style: TextStyle(fontSize: 15),
                                                     //controller: editController,
                                                     onChanged: (value) => {
                                                       debugPrint("total ${editControDeadDiv.text}"),
@@ -798,7 +802,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                                       //hintText: 'Enter a search term'
                                                     ),
                                                     textAlign: TextAlign.center,
-                                                    style: TextStyle(fontSize: 20),
+                                                    style: TextStyle(fontSize: 15),
                                                     //controller: editController,
                                                     onChanged: (value) => {
                                                       debugPrint("total ${editControInjured.text}"),
@@ -825,7 +829,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                                       //hintText: 'Enter a search term'
                                                     ),
                                                     textAlign: TextAlign.center,
-                                                    style: TextStyle(fontSize: 20),
+                                                    style: TextStyle(fontSize: 15),
                                                     //controller: editController,
                                                     onChanged: (value) => {
                                                       debugPrint("total ${editControshelterNum.text}"),
@@ -853,7 +857,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                                       //hintText: 'Enter a search term'
                                                     ),
                                                     textAlign: TextAlign.center,
-                                                    style: TextStyle(fontSize: 20),
+                                                    style: TextStyle(fontSize: 15),
                                                     //controller: editController,
                                                     onChanged: (value) => {
                                                       debugPrint("total ${editControsPeoplehelterNum.text}"),
@@ -880,7 +884,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                                       //hintText: 'Enter a search term'
                                                     ),
                                                     textAlign: TextAlign.center,
-                                                    style: TextStyle(fontSize: 20),
+                                                    style: TextStyle(fontSize: 15),
                                                     //controller: editController,
                                                     onChanged: (value) => {
                                                       debugPrint("total ${editControDeadDiv.text}"),
@@ -1033,7 +1037,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                               color: Colors.black,
-                                              fontSize: 20
+                                              fontSize: 15
                                           )
                                       )
                                   ),
@@ -1051,7 +1055,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                               color: Colors.black,
-                                              fontSize: 20
+                                              fontSize: 15
                                           )
                                       )
                                   ),
@@ -1068,25 +1072,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                               color: Colors.black,
-                                              fontSize: 20
-                                          )
-                                      )
-                                  ),
-
-                                  Container(
-                                      padding: const EdgeInsets.all(3.0),
-                                      decoration: BoxDecoration(
-                                          color: Colors.black12,
-                                          border: Border.all(color: Colors.black12)
-                                      ),
-                                      height: 40,
-                                      width: 250.0,
-                                      child: new Text(
-                                          "",
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 20
+                                              fontSize: 15
                                           )
                                       )
                                   ),
@@ -1104,7 +1090,25 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                               color: Colors.black,
-                                              fontSize: 20
+                                              fontSize: 15
+                                          )
+                                      )
+                                  ),
+
+                                  Container(
+                                      padding: const EdgeInsets.all(3.0),
+                                      decoration: BoxDecoration(
+                                          color: Colors.black12,
+                                          border: Border.all(color: Colors.black12)
+                                      ),
+                                      height: 40,
+                                      width: 250.0,
+                                      child: new Text(
+                                          "",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 15
                                           )
                                       )
                                   ),

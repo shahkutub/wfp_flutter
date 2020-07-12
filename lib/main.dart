@@ -94,7 +94,7 @@ class CarouselPage extends StatelessWidget {
                       child: new Center(
 
                         child: new Text(" Log IN ",
-                          style: TextStyle(color: Colors.white,fontSize: 25.0),
+                          style: TextStyle(color: Colors.white,fontSize: 20.0),
                         ),
                       )
                   ),
