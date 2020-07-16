@@ -22,7 +22,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
   List<Company> _companies = Company.getCompanies();
   List<DropdownMenuItem<Company>> _dropdownMenuItems;
   Company _selectedCompany;
-  TextEditingController editControllerAfFull = new TextEditingController();
+  //TextEditingController editControllerAfFull = new TextEditingController();
   TextEditingController editControllerAfHalf = new TextEditingController();
   TextEditingController editControHouseAfFull = new TextEditingController();
   TextEditingController editControHouseAfHalf = new TextEditingController();
@@ -31,6 +31,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
   TextEditingController editControshelterNum = new TextEditingController();
   TextEditingController editControsPeoplehelterNum = new TextEditingController();
 
+  List<TextEditingController> editControllerAfFull = new List();
   var tmpArray = [];
 
   int total_family_afected_full;
@@ -38,6 +39,8 @@ class primaryincidentPageState extends State<primaryincidentPage> {
   int fm_full_aff;
 
   int family_full_af =0;
+
+  int totalAfFull;
 
   void ItemChange(bool val,int index){
     //DataModel dataMode2 = new DataModel();
@@ -48,6 +51,8 @@ class primaryincidentPageState extends State<primaryincidentPage> {
         DataModel dataMode2 = new DataModel(n, '', '', '', '','', '', '', '', '');
 
         listTitle.add(dataMode2);
+        editControllerAfFull.add(new TextEditingController());
+        
       }else{
         listTitle.removeAt(index);
       }
@@ -607,7 +612,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                                     height: 55,
                                                     width: 125.0,
                                                     child: TextField(
-                                                      controller: editControllerAfFull,
+                                                      controller: editControllerAfFull[i],
                                                       decoration: InputDecoration(
                                                         border: InputBorder.none,
                                                         //hintText: 'Enter a search term'
@@ -617,16 +622,22 @@ class primaryincidentPageState extends State<primaryincidentPage> {
 
                                                       onChanged: (value) => {
                                                         //total_family_afected_full = editControllerAfl.text as int,
-                                                        debugPrint("total ${editControllerAfFull.text}"),
+                                                        debugPrint("total ${editControllerAfFull[i].text}"),
 
-                                                        if(j==1){
-                                                          listTitle[i].fullAffectedFamily = total_family_afected_full as String,
-                                                          for (var i = 0; i < listTitle.length; i++) {
-                                                            fm_full_aff = listTitle[i].fullAffectedFamily as int,
-                                                            family_full_af =  family_full_af+fm_full_aff,
+                                                        for (var i = 0; i < editControllerAfFull.length; i++) {
+                                                           totalAfFull += editControllerAfFull[i].text as int,
+
                                                             debugPrint('total: $family_full_af')
                                                           }
-                                                        }
+
+//                                                        if(j==1){
+//                                                          listTitle[i].fullAffectedFamily = total_family_afected_full as String,
+//                                                          for (var i = 0; i < listTitle.length; i++) {
+//                                                            fm_full_aff = listTitle[i].fullAffectedFamily as int,
+//                                                            family_full_af =  family_full_af+fm_full_aff,
+//                                                            debugPrint('total: $family_full_af')
+//                                                          }
+//                                                        }
                                                       },
 
                                                     ),

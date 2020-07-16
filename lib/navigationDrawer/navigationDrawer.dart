@@ -12,12 +12,12 @@ class navigationDrawer extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: <Widget>[
           createDrawerHeader(),
-//          createDrawerBodyItem(
-//            icon: Icons.home,
-//            text: 'Home',
-//            onTap: () =>
-//                Navigator.pushReplacementNamed(context, pageRoutes.home),
-//          ),
+          createDrawerBodyItem(
+            icon: Icons.home,
+            text: 'Dashboard',
+            onTap: () =>
+                Navigator.pushReplacementNamed(context, pageRoutes.dashboardmap),
+          ),
           createDrawerBodyItem(
             icon: Icons.add,
             text: 'Primary Incident',
@@ -26,11 +26,35 @@ class navigationDrawer extends StatelessWidget {
           ),
 
           createDrawerBodyItem(
-            icon: Icons.event_note,
-            text: 'Add/Update shelter',
+            icon: Icons.view_list,
+            text: 'Update shelter',
             onTap: () =>
-                Navigator.pushReplacementNamed(context, pageRoutes.contact),
+                Navigator.pushReplacementNamed(context, pageRoutes.shelter),
           ),
+
+          createDrawerBodyItem(
+            icon: Icons.view_list,
+            text: 'Update warehouse',
+            onTap: () =>
+                Navigator.pushReplacementNamed(context, pageRoutes.warehouse),
+          ),
+
+
+          createDrawerBodyItem(
+            icon: Icons.map,
+            text: 'Shelter Map',
+            onTap: () =>
+                Navigator.pushReplacementNamed(context, pageRoutes.sheltermap),
+          ),
+
+          createDrawerBodyItem(
+            icon: Icons.map,
+            text: 'Warehouse Map',
+            onTap: () =>
+                Navigator.pushReplacementNamed(context, pageRoutes.warehousemap),
+          ),
+
+
 //          Divider(),
 //          createDrawerBodyItem(
 //            icon: Icons.notifications_active,

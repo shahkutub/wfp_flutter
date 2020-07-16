@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 
 Widget createDrawerHeader() {
   return DrawerHeader(
-      margin: EdgeInsets.zero,
-      padding: EdgeInsets.zero,
+      margin: EdgeInsets.all(30.0),
+      padding: EdgeInsets.all(100.0),
       decoration: BoxDecoration(
           image: DecorationImage(
+            
               fit: BoxFit.contain,
               image:  AssetImage('images/ic_launcher.png'))),
 //      child: Stack(children: <Widget>[

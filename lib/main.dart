@@ -31,7 +31,7 @@ class CarouselPage extends StatelessWidget {
           ),
           SizedBox(
 
-            height: 280.0,
+            height: 220.0,
             width: MediaQuery.of(context).size.width,
             child: Carousel(
               boxFit: BoxFit.none,
@@ -60,7 +60,7 @@ class CarouselPage extends StatelessWidget {
             height: 10.0,
           ),
 
-          Image.asset('images/ic_launcher.png', scale: 1.0, width: 150.0, height: 150.0,fit: BoxFit.contain),
+          Image.asset('images/ic_launcher.png', scale: 1.0, width: 140.0, height: 140.0,fit: BoxFit.contain),
 
           SizedBox(
             height: 20.0,

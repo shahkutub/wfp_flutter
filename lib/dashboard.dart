@@ -1,11 +1,15 @@
 
 import 'package:flutter/material.dart';
+import 'package:wfp/Fragments/dashboardMapPage.dart';
 import 'package:wfp/Fragments/primaryincidentPagecopy.dart';
+import 'package:wfp/Fragments/warehouseListPage.dart';
 
 import 'Fragments/homePage.dart';
 import 'Fragments/shelterListPage.dart';
 import 'package:wfp/routes/pageRoute.dart';
 import 'Fragments/primaryincidentPage.dart';
+import 'Fragments/shelterMapPage.dart';
+import 'Fragments/warehouseMapPage.dart';
 //import 'Fragments/primaryincidentPagecopy.dart';
 
 
@@ -18,11 +22,15 @@ import 'Fragments/primaryincidentPage.dart';
       theme: new ThemeData(
       primarySwatch: Colors.blue,
       ),
-      home: primaryincidentPage(),
+      home: dashboardMapPage(),
       routes:  {
       pageRoutes.home: (context) => homePage(),
-      pageRoutes.contact: (context) => contactPage(),
+      pageRoutes.shelter: (context) => shelterListPage(),
+      pageRoutes.warehouse: (context) => warehouseListPage(),
       pageRoutes.primaryincident: (context) => primaryincidentPage(),
+      pageRoutes.sheltermap: (context) => shelterMapPage(),
+      pageRoutes.warehousemap: (context) => warehouseMapPage(),
+      pageRoutes.dashboardmap: (context) => dashboardMapPage(),
       //pageRoutes.primaryincident: (context) => primaryincidentPagecopy(),
       //pageRoutes.profile: (context) => primaryincidentPagecopy(),
       //pageRoutes.profile: (context) => profilePage(),

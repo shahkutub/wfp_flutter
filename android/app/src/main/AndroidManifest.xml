@@ -12,7 +12,7 @@
 
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="wfp"
+        android:label="EOD"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
@@ -48,5 +48,9 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBdfDB1q_l-BHzatdHcnnqGY4OSWKuzSU0"/>
+
     </application>
 </manifest>
