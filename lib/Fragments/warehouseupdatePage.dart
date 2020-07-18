@@ -359,8 +359,8 @@ class _MyHomePageState extends State<wareHouseUpdatePage> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    requestLocationPermission(context);
-    _gpsService();
+//    requestLocationPermission(context);
+//    _gpsService();
     //getLocation();
 
 
@@ -1160,7 +1160,7 @@ class _MyHomePageState extends State<wareHouseUpdatePage> {
               child: Center(
 
                 child: Text(
-                  'Update latitude,longitude from current GPS location',
+                  'Get current GPS location',
                   style: TextStyle(fontSize: 15,color: Colors.white,),
                   textAlign: TextAlign.center,
 
@@ -1170,6 +1170,7 @@ class _MyHomePageState extends State<wareHouseUpdatePage> {
             ),
             onTap: () {
               requestLocationPermission(context);
+              _gpsService();
             },
           ),
 

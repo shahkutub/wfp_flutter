@@ -31,6 +31,15 @@ class _MyHomePageState extends State<warehouseListPage> {
     DataModel dataMode3 = new DataModel('Bamna warehouse','Bamna', '13km', '3', '1200sqf', '5000','20', '','');
     listTitle.add(dataMode3);
 
+    DataModel dataMode4 = new DataModel('Betagi Warehouse','Betagi', '13km', '3', '1200sqf', '5000','20', '','');
+        listTitle.add(dataMode4);
+
+    DataModel dataMode5 = new DataModel('PathorghataWarehouse','Pathorghata', '13km', '3', '1200sqf', '5000','20', '','');
+        listTitle.add(dataMode5);
+
+    DataModel dataMode6 = new DataModel('Agailjhara Warehouse','Agailjhara', '13km', '3', '1200sqf', '5000','20', '','');
+    listTitle.add(dataMode6);
+
 
   }
 
@@ -76,7 +85,7 @@ class _MyHomePageState extends State<warehouseListPage> {
                               border: Border.all(color: Colors.black12)
                           ),
 
-                          width: 180.0,
+                          width: 150.0,
                           height: 55,
                           child: new Text(
                               "Union",
@@ -96,7 +105,7 @@ class _MyHomePageState extends State<warehouseListPage> {
                               border: Border.all(color: Colors.black12)
                           ),
 
-                          width: 180.0,
+                          width: 150.0,
                           height: 55,
                           child: new Text(
                               "Distance From Upazila",
@@ -116,7 +125,7 @@ class _MyHomePageState extends State<warehouseListPage> {
                               border: Border.all(color: Colors.black12)
                           ),
 
-                          width: 180.0,
+                          width: 150.0,
                           height: 55,
                           child: new Text(
                               "Warehouse Name",
@@ -135,7 +144,7 @@ class _MyHomePageState extends State<warehouseListPage> {
                               border: Border.all(color: Colors.black12)
                           ),
 
-                          width: 180.0,
+                          width: 150.0,
                           height: 55,
                           child: new Text(
                               "Description",
@@ -154,7 +163,7 @@ class _MyHomePageState extends State<warehouseListPage> {
                               border: Border.all(color: Colors.black12)
                           ),
 
-                          width: 180.0,
+                          width: 150.0,
                           height: 55,
                           child: new Text(
                               "Address",
@@ -174,7 +183,7 @@ class _MyHomePageState extends State<warehouseListPage> {
                               border: Border.all(color: Colors.black12)
                           ),
 
-                          width: 180.0,
+                          width: 150.0,
                           height: 55,
                           child: new Text(
                               "Action",
@@ -192,7 +201,7 @@ class _MyHomePageState extends State<warehouseListPage> {
                     children: <Widget>[
                       //SizedBox(
                       SizedBox(
-                        width: 1080.0,
+                        width: 900.0,
                         //height: 270.0,
                         height: height/1.4,
 
@@ -227,7 +236,7 @@ class _MyHomePageState extends State<warehouseListPage> {
                                     ),
                                     height: 55,
 
-                                    width: 180.0,
+                                    width: 150.0,
                                     child: new Text(
                                         listTitle.elementAt(i).unionName,
                                         textAlign: TextAlign.center,
@@ -246,7 +255,7 @@ class _MyHomePageState extends State<warehouseListPage> {
                                     ),
                                     height: 55,
 
-                                    width: 180.0,
+                                    width: 150.0,
                                     child: new Text(
                                         listTitle.elementAt(i).DistanceFromUpazila,
                                         textAlign: TextAlign.center,
@@ -265,7 +274,7 @@ class _MyHomePageState extends State<warehouseListPage> {
                                     ),
                                     height: 55,
 
-                                    width: 180.0,
+                                    width: 150.0,
                                     child: new Text(
                                         listTitle.elementAt(i).name,
                                         textAlign: TextAlign.center,
@@ -284,7 +293,7 @@ class _MyHomePageState extends State<warehouseListPage> {
                                     ),
                                     height: 55,
 
-                                    width: 180.0,
+                                    width: 150.0,
                                     child: new Text(
                                         listTitle.elementAt(i).name,
                                         textAlign: TextAlign.center,
@@ -303,7 +312,7 @@ class _MyHomePageState extends State<warehouseListPage> {
                                     ),
                                     height: 55,
 
-                                    width: 180.0,
+                                    width: 150.0,
                                     child: new Text(
                                         listTitle.elementAt(i).unionName,
                                         textAlign: TextAlign.center,
@@ -314,7 +323,6 @@ class _MyHomePageState extends State<warehouseListPage> {
                                     ),
                                   );
                                 }
-
                                 if(j==5){
                                   return new Container(
                                     padding: const EdgeInsets.all(3.0),
@@ -323,7 +331,7 @@ class _MyHomePageState extends State<warehouseListPage> {
                                     ),
                                     height: 55,
 
-                                    width: 180.0,
+                                    width: 150.0,
                                     child: IconButton(
                                       padding: new EdgeInsets.all(0.0),
                                       icon: new Icon(Icons.edit, size: 18.0,color: Colors.red,),

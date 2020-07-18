@@ -20,21 +20,21 @@ class navigationDrawer extends StatelessWidget {
           ),
           createDrawerBodyItem(
             icon: Icons.add,
-            text: 'Primary Incident',
+            text: 'Primary Incident Form',
             onTap: () =>
                 Navigator.pushReplacementNamed(context, pageRoutes.primaryincident),
           ),
 
           createDrawerBodyItem(
             icon: Icons.view_list,
-            text: 'Update shelter',
+            text: 'Update Shelter Center',
             onTap: () =>
                 Navigator.pushReplacementNamed(context, pageRoutes.shelter),
           ),
 
           createDrawerBodyItem(
             icon: Icons.view_list,
-            text: 'Update warehouse',
+            text: 'Update Warehouse',
             onTap: () =>
                 Navigator.pushReplacementNamed(context, pageRoutes.warehouse),
           ),
@@ -42,7 +42,7 @@ class navigationDrawer extends StatelessWidget {
 
           createDrawerBodyItem(
             icon: Icons.map,
-            text: 'Shelter Map',
+            text: 'Shelter Center Map',
             onTap: () =>
                 Navigator.pushReplacementNamed(context, pageRoutes.sheltermap),
           ),

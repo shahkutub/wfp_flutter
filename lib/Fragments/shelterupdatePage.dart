@@ -15,8 +15,9 @@ import 'package:wfp/pages/take_picture_page.dart';
 
 class shelterUpdatePage extends StatefulWidget {
   static const String routeName = '/contactPage';
-  shelterUpdatePage({Key key, this.title}) : super(key: key);
+  shelterUpdatePage({Key key, this.title,@required this.name}) : super(key: key);
   final String title;
+  final String name;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -109,13 +110,13 @@ class _MyHomePageState extends State<shelterUpdatePage> {
 
 
     setState(() {
-      _radioValue = "";
-      _radioValue_toilet = "";
-      _radioValue_toilet_men_women = "";
-      _radioValue_available_water_suply = "";
-      _radioValue_valuable_facility = "";
-      _radioValue_women_space = "";
-      _radioValue_disable_facility = "";
+      _radioValue = "yes";
+      _radioValue_toilet = "no";
+      _radioValue_toilet_men_women = "no";
+      _radioValue_available_water_suply = "no";
+      _radioValue_valuable_facility = "yes";
+      _radioValue_women_space = "no";
+      _radioValue_disable_facility = "yes";
 
     });
     //_gpsService();
@@ -360,8 +361,8 @@ class _MyHomePageState extends State<shelterUpdatePage> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    requestLocationPermission(context);
-    _gpsService();
+    //requestLocationPermission(context);
+
     //getLocation();
 
 
@@ -1201,7 +1202,7 @@ class _MyHomePageState extends State<shelterUpdatePage> {
               child: Center(
 
                 child: Text(
-                  'Update latitude,longitude from current GPS location',
+                  'Get current GPS location',
                   style: TextStyle(fontSize: 15,color: Colors.white,),
                   textAlign: TextAlign.center,
 
@@ -1211,6 +1212,7 @@ class _MyHomePageState extends State<shelterUpdatePage> {
             ),
             onTap: () {
               requestLocationPermission(context);
+              _gpsService();
             },
           ),
 

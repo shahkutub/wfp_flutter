@@ -6,7 +6,7 @@ import 'package:wfp/loginPage.dart';
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: true,
-    title: 'Carousel Pro',
+    //title: 'Carousel Pro',
     home: CarouselPage(),
   ));
 }
@@ -17,7 +17,7 @@ class CarouselPage extends StatelessWidget {
     return Scaffold(
 
       appBar: AppBar(
-        title: Text("WFP"),
+        title: Text("Emergency Operational Dashboard"),
       ),
 
       body: Column(

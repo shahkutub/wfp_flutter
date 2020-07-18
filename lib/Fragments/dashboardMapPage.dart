@@ -20,12 +20,12 @@ class dashboardMapPage extends StatefulWidget {
 class _MyHomePageState extends State<dashboardMapPage> {
   Completer<GoogleMapController> _controller = Completer();
 
-  Position position = null;
+
   void _onMapCreated(GoogleMapController controller) {
     _controller.complete(controller);
   }
 
-
+  Position position = null;
   LatLng latLng = null;
 
   static const LatLng _center = const LatLng(22.139761449969, 90.2808380126953);
@@ -92,7 +92,7 @@ class _MyHomePageState extends State<dashboardMapPage> {
       position = currentPosition;
       latLng = LatLng(position.latitude,position.longitude);
 
-      //debugPrint(geolocationStatus.toString());
+      debugPrint('Lat:${latLng.latitude.toString()}');
     });
   }
 
@@ -140,8 +140,8 @@ class _MyHomePageState extends State<dashboardMapPage> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-//    requestLocationPermission(context);
-//    _gpsService();
+    requestLocationPermission(context);
+    _gpsService();
 
 
     // TODO: implement build
@@ -156,7 +156,8 @@ class _MyHomePageState extends State<dashboardMapPage> {
         markers: _markers,
         onMapCreated: _onMapCreated,
         initialCameraPosition: CameraPosition(
-          target: latLng != null ? latLng : _center,
+          //target: latLng != null ? latLng : _center,
+          target: latLng,
           zoom: 11.0,
         ),
       ),

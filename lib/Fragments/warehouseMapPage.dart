@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:wfp/Fragments/shelterupdatePage.dart';
 import 'package:wfp/navigationDrawer/navigationDrawer.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:geolocator/geolocator.dart';
 
 class warehouseMapPage extends StatefulWidget {
   static const String routeName = '/warehouseMapPage';
@@ -22,9 +23,20 @@ class _MyHomePageState extends State<warehouseMapPage> {
   void _onMapCreated(GoogleMapController controller) {
     _controller.complete(controller);
   }
-
+  Position position = null;
+  LatLng latLng = null;
   //static const LatLng _center = const LatLng(45.521563, -122.677433);
+  void requestLocationPermission(BuildContext context) async {
+    //GeolocationStatus geolocationStatus  = await Geolocator().checkGeolocationPermissionStatus();
 
+    Position currentPosition = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    setState(() {
+      position = currentPosition;
+      latLng = LatLng(position.latitude,position.longitude);
+
+      //debugPrint(geolocationStatus.toString());
+    });
+  }
   static const LatLng _center = const LatLng(22.139761449969, 90.2808380126953);
   static const LatLng _center1 = const LatLng(22.2630946700057, 90.0556182861328);
   static const LatLng _center2 = const LatLng(22.1861582180894, 90.2080535888672);
@@ -88,7 +100,7 @@ class _MyHomePageState extends State<warehouseMapPage> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
 
-
+    requestLocationPermission(context);
 
     // TODO: implement build
     return new Scaffold(
@@ -102,7 +114,8 @@ class _MyHomePageState extends State<warehouseMapPage> {
         markers: _markers,
         onMapCreated: _onMapCreated,
         initialCameraPosition: CameraPosition(
-          target: _center,
+          //target: latLng != null ? latLng : _center,
+          target: latLng,
           zoom: 11.0,
         ),
       ),

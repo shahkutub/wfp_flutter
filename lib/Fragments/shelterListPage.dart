@@ -30,8 +30,17 @@ class _MyHomePageState extends State<shelterListPage> {
     DataModel dataMode3 = new DataModel('amtoli', '15km', '2', '1200sqf', '5000','25', 'Cyclone center','');
     listTitle.add(dataMode3);
 
-//    DataModel dataMode4 = new DataModel('amtoli', '15km', '2', '1200sqf', '5000','25', 'Cyclone center','');
-//    listTitle.add(dataMode4);
+    DataModel dataMode4 = new DataModel('bamna', '12km', '3', '1300sqf', '5000','25', 'Flood center','');
+    listTitle.add(dataMode4);
+
+    DataModel dataMode5 = new DataModel('Badda', '17km', '3', '1500sqf', '5000','25', 'Flood center','');
+    listTitle.add(dataMode5);
+
+    DataModel dataMode6 = new DataModel('Kalibari', '15km', '3', '1200sqf', '5000','25', 'Mujib killa','');
+    listTitle.add(dataMode6);
+
+    DataModel dataMode7 = new DataModel('jalkhati', '12km', '2', '1100sqf', '4000','25', 'Mujib killa','');
+    listTitle.add(dataMode7);
 
   }
 
@@ -77,7 +86,7 @@ class _MyHomePageState extends State<shelterListPage> {
                               border: Border.all(color: Colors.black12)
                           ),
 
-                          width: 170.0,
+                          width: 150.0,
                           height: 55,
                           child: new Text(
                               "Union",
@@ -97,7 +106,7 @@ class _MyHomePageState extends State<shelterListPage> {
                               border: Border.all(color: Colors.black12)
                           ),
 
-                          width: 170.0,
+                          width: 150.0,
                           height: 55,
                           child: new Text(
                               "Distance From Upazila",
@@ -117,7 +126,7 @@ class _MyHomePageState extends State<shelterListPage> {
                               border: Border.all(color: Colors.black12)
                           ),
 
-                          width: 170.0,
+                          width: 150.0,
                           height: 55,
                           child: new Text(
                               "No Of Floor",
@@ -136,7 +145,7 @@ class _MyHomePageState extends State<shelterListPage> {
                               border: Border.all(color: Colors.black12)
                           ),
 
-                          width: 170.0,
+                          width: 150.0,
                           height: 55,
                           child: new Text(
                               "Floor Space",
@@ -155,7 +164,7 @@ class _MyHomePageState extends State<shelterListPage> {
                               border: Border.all(color: Colors.black12)
                           ),
 
-                          width: 170.0,
+                          width: 150.0,
                           height: 55,
                           child: new Text(
                               "People Capacity",
@@ -174,7 +183,7 @@ class _MyHomePageState extends State<shelterListPage> {
                               border: Border.all(color: Colors.black12)
                           ),
 
-                          width: 170.0,
+                          width: 150.0,
                           height: 55,
                           child: new Text(
                               "No Of Toilet",
@@ -193,7 +202,7 @@ class _MyHomePageState extends State<shelterListPage> {
                               border: Border.all(color: Colors.black12)
                           ),
 
-                          width: 170.0,
+                          width: 150.0,
                           height: 55,
                           child: new Text(
                               "Type",
@@ -212,7 +221,7 @@ class _MyHomePageState extends State<shelterListPage> {
                               border: Border.all(color: Colors.black12)
                           ),
 
-                          width: 170.0,
+                          width: 150.0,
                           height: 55,
                           child: new Text(
                               "Action",
@@ -230,7 +239,7 @@ class _MyHomePageState extends State<shelterListPage> {
                     children: <Widget>[
                       //SizedBox(
                       SizedBox(
-                        width: 1360.0,
+                        width: 1200.0,
                         //height: 270.0,
                         height: height/1.4,
 
@@ -264,7 +273,7 @@ class _MyHomePageState extends State<shelterListPage> {
                                     ),
                                     height: 55,
 
-                                    width: 170.0,
+                                    width: 150.0,
                                     child: new Text(
                                         listTitle.elementAt(i).unionName,
                                         textAlign: TextAlign.center,
@@ -283,7 +292,7 @@ class _MyHomePageState extends State<shelterListPage> {
                                     ),
                                     height: 55,
 
-                                    width: 170.0,
+                                    width: 150.0,
                                     child: new Text(
                                         listTitle.elementAt(i).DistanceFromUpazila,
                                         textAlign: TextAlign.center,
@@ -302,7 +311,7 @@ class _MyHomePageState extends State<shelterListPage> {
                                     ),
                                     height: 55,
 
-                                    width: 170.0,
+                                    width: 150.0,
                                     child: new Text(
                                         listTitle.elementAt(i).NoOfFloor,
                                         textAlign: TextAlign.center,
@@ -321,7 +330,7 @@ class _MyHomePageState extends State<shelterListPage> {
                                     ),
                                     height: 55,
 
-                                    width: 170.0,
+                                    width: 150.0,
                                     child: new Text(
                                         listTitle.elementAt(i).FloorSpace,
                                         textAlign: TextAlign.center,
@@ -340,7 +349,7 @@ class _MyHomePageState extends State<shelterListPage> {
                                     ),
                                     height: 55,
 
-                                    width: 170.0,
+                                    width: 150.0,
                                     child: new Text(
                                         listTitle.elementAt(i).PeopleCapacity,
                                         textAlign: TextAlign.center,
@@ -359,7 +368,7 @@ class _MyHomePageState extends State<shelterListPage> {
                                     ),
                                     height: 55,
 
-                                    width: 170.0,
+                                    width: 150.0,
                                     child: new Text(
                                         listTitle.elementAt(i).NoOfToilet,
                                         textAlign: TextAlign.center,
@@ -378,7 +387,7 @@ class _MyHomePageState extends State<shelterListPage> {
                                     ),
                                     height: 55,
 
-                                    width: 170.0,
+                                    width: 150.0,
                                     child: new Text(
                                         listTitle.elementAt(i).type,
                                         textAlign: TextAlign.center,
@@ -397,7 +406,7 @@ class _MyHomePageState extends State<shelterListPage> {
                                     ),
                                     height: 55,
 
-                                    width: 170.0,
+                                    width: 150.0,
                                     child: IconButton(
                                       padding: new EdgeInsets.all(0.0),
                                       icon: new Icon(Icons.edit, size: 18.0,color: Colors.red,),

@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:wfp/Fragments/shelterupdatePage.dart';
 import 'package:wfp/navigationDrawer/navigationDrawer.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:geolocator/geolocator.dart';
+
 class shelterMapPage extends StatefulWidget {
   static const String routeName = '/shelterMapPage';
   shelterMapPage({Key key, this.title}) : super(key: key);
@@ -33,7 +35,20 @@ class _MyHomePageState extends State<shelterMapPage> {
 
   //static const LatLng _center = const LatLng(45.521563, -122.677433);
 
+  Position position = null;
+  LatLng latLng = null;
+  //static const LatLng _center = const LatLng(45.521563, -122.677433);
+  void requestLocationPermission(BuildContext context) async {
+    //GeolocationStatus geolocationStatus  = await Geolocator().checkGeolocationPermissionStatus();
 
+    Position currentPosition = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    setState(() {
+      position = currentPosition;
+      latLng = LatLng(position.latitude,position.longitude);
+
+      //debugPrint(geolocationStatus.toString());
+    });
+  }
 
   final Set<Marker> _markers = {
     Marker(
@@ -87,7 +102,7 @@ class _MyHomePageState extends State<shelterMapPage> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-
+    requestLocationPermission(context);
 
 
     // TODO: implement build
@@ -102,7 +117,8 @@ class _MyHomePageState extends State<shelterMapPage> {
         markers: _markers,
         onMapCreated: _onMapCreated,
         initialCameraPosition: CameraPosition(
-          target: _center,
+          //target: latLng != null ? latLng : _center,
+          target: latLng,
           zoom: 11.0,
         ),
       ),
