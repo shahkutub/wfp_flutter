@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:android_intent/android_intent.dart';
 import 'package:flutter/material.dart';
 import 'package:location_permissions/location_permissions.dart';
+import 'package:wfp/Fragments/shelterListPage.dart';
 import 'package:wfp/navigationDrawer/navigationDrawer.dart';
 import 'package:wfp/pages/home_page.dart';
 import 'package:geolocator/geolocator.dart';
@@ -12,12 +13,12 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:wfp/pages/take_picture_page.dart';
+import 'package:wfp/Model/DataModel.dart';
 
 class shelterUpdatePage extends StatefulWidget {
   static const String routeName = '/contactPage';
-  shelterUpdatePage({Key key, this.title,@required this.name}) : super(key: key);
-  final String title;
-  final String name;
+  DataModel dataModel = new DataModel('', '', '', '', '', '', '', '');
+  shelterUpdatePage({Key key,@required this.dataModel}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -402,7 +403,7 @@ class _MyHomePageState extends State<shelterUpdatePage> {
                    child: TextField(
                      decoration: InputDecoration(
                        border: InputBorder.none,
-                       //hintText: 'Enter a search term'
+                       hintText: new shelterUpdatePage().dataModel.unionName
                      ),
                      textAlign: TextAlign.center,
                      style: TextStyle(fontSize: 20),
@@ -1285,10 +1286,10 @@ class _MyHomePageState extends State<shelterUpdatePage> {
 
 }
 
-class DataModel {
-  String unionName,DistanceFromUpazila,NoOfFloor,FloorSpace,PeopleCapacity,NoOfToilet,type,action;
-
-  DataModel(this.unionName, this.DistanceFromUpazila, this.NoOfFloor, this.FloorSpace,
-      this.PeopleCapacity,this.NoOfToilet,this.type,this.action);
-
-}
+//class DataModel {
+//  String unionName,DistanceFromUpazila,NoOfFloor,FloorSpace,PeopleCapacity,NoOfToilet,type,action;
+//
+//  DataModel(this.unionName, this.DistanceFromUpazila, this.NoOfFloor, this.FloorSpace,
+//      this.PeopleCapacity,this.NoOfToilet,this.type,this.action);
+//
+//}

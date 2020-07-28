@@ -27,6 +27,7 @@ dependencies:
   location_permissions: ^3.0.0+1
   android_intent: ^0.3.7+2
   google_maps_flutter: ^0.5.28+1
+  http: ^0.12.2
 
 
   flutter:

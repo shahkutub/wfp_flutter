@@ -15,7 +15,7 @@ class primaryincidentPage extends StatefulWidget {
 }
 
 class primaryincidentPageState extends State<primaryincidentPage> {
-  List<bool> inputs = new List<bool>();
+  //List<bool> inputs = new List<bool>();
   //List<String> inputsValue = new List<String>();
   List <DataModel> listTitle = new List();
   List<Union> _unions = Union.getUnions();
@@ -45,16 +45,22 @@ class primaryincidentPageState extends State<primaryincidentPage> {
   void ItemChange(bool val,int index){
     //DataModel dataMode2 = new DataModel();
     setState(() {
-      inputs[index] = val;
+      //inputs[index] = val;
       if(val==true){
+        _unions[index].isCheck=true;
         String n = _unions[index].name;
         DataModel dataMode2 = new DataModel(n, '', '', '', '','', '', '', '', '');
-
         listTitle.add(dataMode2);
         editControllerAfFull.add(new TextEditingController());
-        
       }else{
-        listTitle.removeAt(index);
+        _unions[index].isCheck=false;
+        String n = _unions[index].name;
+        for(int i=0;i<listTitle.length;i++){
+          if(n==listTitle.elementAt(i).unionName){
+            listTitle.removeAt(i);
+          }
+        }
+
       }
     });
   }
@@ -70,7 +76,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
 
     setState(() {
       for(int i=0;i<_unions.length;i++){
-        inputs.add(false);
+        //inputs.add(false);
       }
     });
 
@@ -244,7 +250,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                           child: ListView.builder(
                             //shrinkWrap: true,
                             scrollDirection: Axis.horizontal,
-                            itemCount: inputs.length,
+                            itemCount: _unions.length,
                             itemBuilder: (BuildContext context, int index) =>
                                 //Text('Dummy Card Text')
                             Card(
@@ -253,9 +259,10 @@ class primaryincidentPageState extends State<primaryincidentPage> {
 
                                 children: <Widget>[
                                   Checkbox(
-                                      value: inputs[index],
+                                      value: _unions[index].isCheck,
                                       onChanged: (bool val){
                                         //debugPrint('index: $_unions[index].name');
+
                                         ItemChange(val, index);
                                         //if(val==true){
 
@@ -1171,21 +1178,22 @@ class Company {
 class Union {
   int id;
   String name;
+  bool isCheck;
 
-  Union(this.id, this.name);
+  Union(this.id, this.name, this.isCheck);
 
   static List<Union> getUnions() {
     return <Union>[
-      Union(0, 'Baruipara'),
-      Union(1, 'Bemarta'),
-      Union(2, 'Bishnupur'),
-      Union(3, 'Dema'),
-      Union(4, 'Gotapara'),
-      Union(5, 'Jatrapur'),
-      Union(6, 'Karapara'),
-      Union(7, 'Khanpur'),
-      Union(8, 'Rakhalgachhi'),
-      Union(9, 'Shatgambuj'),
+      Union(0, 'Baruipara',false),
+      Union(1, 'Bemarta',false),
+      Union(2, 'Bishnupur',false),
+      Union(3, 'Dema',false),
+      Union(4, 'Gotapara',false),
+      Union(5, 'Jatrapur',false),
+      Union(6, 'Karapara',false),
+      Union(7, 'Khanpur',false),
+      Union(8, 'Rakhalgachhi',false),
+      Union(9, 'Shatgambuj',false),
     ];
   }
 }

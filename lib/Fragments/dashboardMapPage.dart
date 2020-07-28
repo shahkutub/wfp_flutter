@@ -26,7 +26,8 @@ class _MyHomePageState extends State<dashboardMapPage> {
   }
 
   Position position = null;
-  LatLng latLng = null;
+  //LatLng latLng = null;
+  LatLng latLng = LatLng(22.139761449969, 90.2808380126953);
 
   static const LatLng _center = const LatLng(22.139761449969, 90.2808380126953);
   static const LatLng _center1 = const LatLng(22.2630946700057, 90.0556182861328);

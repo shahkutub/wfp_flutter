@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:wfp/Fragments/shelterupdatePage.dart';
 import 'package:wfp/navigationDrawer/navigationDrawer.dart';
+import 'package:wfp/Model/DataModel.dart';
 
 class shelterListPage extends StatefulWidget {
   static const String routeName = '/shelterListPage';
@@ -411,9 +412,19 @@ class _MyHomePageState extends State<shelterListPage> {
                                       padding: new EdgeInsets.all(0.0),
                                       icon: new Icon(Icons.edit, size: 18.0,color: Colors.red,),
                                       onPressed: (){
+                                        DataModel data = null;
+                                        setState(() {
+                                          data = new DataModel(listTitle.elementAt(i).unionName,
+                                              listTitle.elementAt(i).DistanceFromUpazila,listTitle.elementAt(i).type,
+                                              listTitle.elementAt(i).type,listTitle.elementAt(i).type,
+                                              listTitle.elementAt(i).type,listTitle.elementAt(i).type,
+                                              listTitle.elementAt(i).type);
+                                        });
+                                        
+
                                         Navigator.push(
                                           context,
-                                          MaterialPageRoute(builder: (context) => shelterUpdatePage()),
+                                          MaterialPageRoute(builder: (context) => shelterUpdatePage(dataModel:data)),
                                         );
                                       },
                                     ),
@@ -446,10 +457,10 @@ class _MyHomePageState extends State<shelterListPage> {
 
 }
 
-class DataModel {
-  String unionName,DistanceFromUpazila,NoOfFloor,FloorSpace,PeopleCapacity,NoOfToilet,type,action;
-
-  DataModel(this.unionName, this.DistanceFromUpazila, this.NoOfFloor, this.FloorSpace,
-      this.PeopleCapacity,this.NoOfToilet,this.type,this.action);
-
-}
+// class DataModel {
+//  String unionName,DistanceFromUpazila,NoOfFloor,FloorSpace,PeopleCapacity,NoOfToilet,type,action;
+//
+//  DataModel(this.unionName, this.DistanceFromUpazila, this.NoOfFloor, this.FloorSpace,
+//      this.PeopleCapacity,this.NoOfToilet,this.type,this.action);
+//
+//}
