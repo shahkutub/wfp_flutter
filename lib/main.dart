@@ -16,22 +16,25 @@ class CarouselPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
 
-      appBar: AppBar(
-        title: Text("Emergency Operational Dashboard"),
-      ),
+//      appBar: AppBar(
+//        title: Text("Emergency Operational Dashboard"),
+//      ),
 
       body: Column(
 
 
         children: [
-
-
+          SizedBox(
+            height: 35.0,
+          ),
+          Image.asset('images/govlogo.png', scale: 1.0, width: 100.0, height: 100.0,fit: BoxFit.contain),
+          Text("Ministry of Disaster Management & Relief",style:TextStyle(fontSize: 15,fontWeight: FontWeight.bold)),
           SizedBox(
             height: 10.0,
           ),
           SizedBox(
 
-            height: 220.0,
+            height: 200.0,
             width: MediaQuery.of(context).size.width,
             child: Carousel(
               boxFit: BoxFit.none,
@@ -60,10 +63,10 @@ class CarouselPage extends StatelessWidget {
             height: 10.0,
           ),
 
-          Image.asset('images/ic_launcher.png', scale: 1.0, width: 140.0, height: 140.0,fit: BoxFit.contain),
+          Image.asset('images/ic_launcher.png', scale: 1.0, width: 80.0, height: 80.0,fit: BoxFit.contain),
 
           SizedBox(
-            height: 20.0,
+            height: 10.0,
           ),
 
           Row(
@@ -77,7 +80,7 @@ class CarouselPage extends StatelessWidget {
                 },
                 child: Container(
                   margin: const EdgeInsets.only(left: 20.0, right: 20.0),
-                  height: 60.0,
+                  height: 50.0,
                   width: 200.0,
                   color: Colors.transparent,
                   child: new Container(

@@ -169,20 +169,34 @@ class loginPageState extends State<loginPage>{
             return Scaffold(
 
                 body: Padding(
-                    padding: EdgeInsets.all(20),
+                    padding: EdgeInsets.all(15),
                     child: ListView(
                       children: <Widget>[
 
-
-                        Image.asset('images/ic_launcher.png', scale: 1.0, width: 150.0, height: 150.0,fit: BoxFit.contain),
-
+                        SizedBox(
+                          height: 30.0,
+                        ),
+                    Container(
+                    alignment: Alignment.center,
+                      child: Image.asset('images/govlogo.png', scale: 1.0, width: 120.0, height: 120.0,fit: BoxFit.contain),
+//                      Text("Ministry of Disaster Management & Relief",style:TextStyle(fontSize: 15,fontWeight: FontWeight.bold)),
+                    ),
                         Container(
-                            alignment: Alignment.center,
-                            padding: EdgeInsets.all(10),
-                            child: Text(
-                              'Sign in',
-                              style: TextStyle(fontSize: 20),
-                            )),
+                          alignment: Alignment.center,
+                          child:Text("Ministry of Disaster Management & Relief",style:TextStyle(fontSize: 15,fontWeight: FontWeight.bold)),
+                        ),
+                        SizedBox(
+                          height: 20.0,
+                        ),
+//                        Image.asset('images/ic_launcher.png', scale: 1.0, width: 150.0, height: 150.0,fit: BoxFit.contain),
+
+//                        Container(
+//                            alignment: Alignment.center,
+//                            padding: EdgeInsets.all(10),
+//                            child: Text(
+//                              'Sign in',
+//                              style: TextStyle(fontSize: 20),
+//                            )),
                         Container(
                           padding: EdgeInsets.all(10),
                           child: TextField(

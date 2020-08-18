@@ -22,25 +22,28 @@ class primaryincidentPageState extends State<primaryincidentPage> {
   List<Company> _companies = Company.getCompanies();
   List<DropdownMenuItem<Company>> _dropdownMenuItems;
   Company _selectedCompany;
-  //TextEditingController editControllerAfFull = new TextEditingController();
-  TextEditingController editControllerAfHalf = new TextEditingController();
-  TextEditingController editControHouseAfFull = new TextEditingController();
-  TextEditingController editControHouseAfHalf = new TextEditingController();
-  TextEditingController editControDeadDiv = new TextEditingController();
-  TextEditingController editControInjured = new TextEditingController();
-  TextEditingController editControshelterNum = new TextEditingController();
-  TextEditingController editControsPeoplehelterNum = new TextEditingController();
 
-  List<TextEditingController> editControllerAfFull = new List();
+  List<TextEditingController> editControFamilyAfFull = new List();
+  List<TextEditingController> editControFamilyAfHalf = new List();
+  List<TextEditingController> editControHouseAfFull = new List();
+  List<TextEditingController> editControHouseAfHalf = new List();
+  List<TextEditingController> editControNumOfDead = new List();
+  List<TextEditingController> editControNumOfInjured = new List();
+  List<TextEditingController> editControNumOfShelterCenter = new List();
+  List<TextEditingController> editControNumOfPeopleInShelterCenter = new List();
+  List<TextEditingController> editControComments = new List();
   var tmpArray = [];
 
-  int total_family_afected_full;
+  int totalfullAfFamily = 0;
+  int totalHalfAfFamily = 0;
+  int totalFullAfHouse = 0;
+  int totalHalfAfHouse = 0;
+  int totalDead = 0;
+  int totalInjured = 0;
+  int totalShelterCenter = 0;
+  int totalInShelterCenter = 0;
+  int totalComments = 0;
 
-  int fm_full_aff;
-
-  int family_full_af =0;
-
-  int totalAfFull;
 
   void ItemChange(bool val,int index){
     //DataModel dataMode2 = new DataModel();
@@ -51,7 +54,15 @@ class primaryincidentPageState extends State<primaryincidentPage> {
         String n = _unions[index].name;
         DataModel dataMode2 = new DataModel(n, '', '', '', '','', '', '', '', '');
         listTitle.add(dataMode2);
-        editControllerAfFull.add(new TextEditingController());
+        editControFamilyAfFull.add(new TextEditingController());
+        editControFamilyAfHalf.add(new TextEditingController());
+        editControHouseAfFull.add(new TextEditingController());
+        editControHouseAfHalf.add(new TextEditingController());
+        editControNumOfDead.add(new TextEditingController());
+        editControNumOfInjured.add(new TextEditingController());
+        editControNumOfShelterCenter.add(new TextEditingController());
+        editControNumOfPeopleInShelterCenter.add(new TextEditingController());
+        editControComments.add(new TextEditingController());
       }else{
         _unions[index].isCheck=false;
         String n = _unions[index].name;
@@ -66,7 +77,16 @@ class primaryincidentPageState extends State<primaryincidentPage> {
   }
 
 
+  void _incrementCounter(int i) {
+    setState(() {
 
+       var totalAfFull = editControFamilyAfFull[i].text;
+
+       totalAfFull += totalAfFull;
+
+
+    });
+  }
 
   @override
   void initState() {
@@ -207,42 +227,46 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                         ],
                       ),
 
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
+                      Center(
 
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Text("Division:",style: TextStyle(fontSize:15.0,)),
-                              Text("Khulna"),
+                        child: SizedBox(
+                          height: 50.0,
+                          child: ListView(
+                            scrollDirection: Axis.horizontal,
+                            //mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Text("Division",style: TextStyle(fontSize:20.0,color:Colors.blue)),
+                                  Text("Khulna",style: TextStyle(fontSize:15.0,color:Colors.black)),
+                                ],
+                              ),
+                              SizedBox(width: 15),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Text("District",style: TextStyle(fontSize:20.0,color:Colors.blue)),
+                                  Text("Bagerhat",style: TextStyle(fontSize:15.0,color:Colors.black)),
+                                ],
+                              ),
+                              SizedBox(width: 15),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Text("Upazila",style: TextStyle(fontSize:20.0,color:Colors.blue )),
+                                  Text("Bagerhat Sadar Upazila",style: TextStyle(fontSize:15.0,color:Colors.black ))
+                                ],
+                              ),
+                              
                             ],
                           ),
-
-                          SizedBox(width: 15),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Text("District:",style: TextStyle(fontSize:15.0)),
-                              Text("Bagerhat"),
-                            ],
-                          ),
-                          SizedBox(width: 15),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Text("Upazila:",style: TextStyle(fontSize:15.0 )),
-                              Text("Bagerhat Sadar Upazila")
-                            ],
-                          ),
-
-
-                        ],
+                        ),
                       ),
 
-                        SizedBox(
-                          height: 10,
-                        ),
+
+                      Text("Union",style: TextStyle(fontSize:20.0,color:Colors.blue )),
+
 
                       Container(
                         
@@ -304,13 +328,14 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                 children: <Widget>[
                                   Center(
                                     child:Container(
+                                        alignment: Alignment.center,
                                         padding: const EdgeInsets.all(3.0),
                                         decoration: BoxDecoration(
                                             color: Colors.black12,
                                             border: Border.all(color: Colors.black12)
                                         ),
 
-                                        width: 250.0,
+                                        width: 170.0,
                                         height: 55,
                                         child: new Text(
                                             "Pourashava/Union",
@@ -329,6 +354,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
                                       Container(
+                                          alignment: Alignment.center,
                                           padding: const EdgeInsets.all(3.0),
                                           decoration: BoxDecoration(
                                               color: Colors.black12,
@@ -351,6 +377,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: <Widget>[
                                           Container(
+                                              alignment: Alignment.center,
                                               padding: const EdgeInsets.all(3.0),
                                               decoration: BoxDecoration(
                                                   color: Colors.black12,
@@ -369,6 +396,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                           ),
 
                                           Container(
+                                              alignment: Alignment.center,
                                               padding: const EdgeInsets.all(3.0),
                                               decoration: BoxDecoration(
                                                   color: Colors.black12,
@@ -397,6 +425,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                   Column(
                                     children: <Widget>[
                                       Container(
+                                          alignment: Alignment.center,
                                           padding: const EdgeInsets.all(3.0),
                                           decoration: BoxDecoration(
                                               color: Colors.black12,
@@ -418,6 +447,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                       Row(
                                         children: <Widget>[
                                           Container(
+                                              alignment: Alignment.center,
                                               padding: const EdgeInsets.all(3.0),
                                               decoration: BoxDecoration(
                                                   color: Colors.black12,
@@ -436,6 +466,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                           ),
 
                                           Container(
+                                              alignment: Alignment.center,
                                               padding: const EdgeInsets.all(3.0),
                                               decoration: BoxDecoration(
                                                   color: Colors.black12,
@@ -463,15 +494,16 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                   ),
 
                                   Container(
+                                      alignment: Alignment.center,
                                       padding: const EdgeInsets.all(3.0),
                                       decoration: BoxDecoration(
                                           color: Colors.black12,
                                           border: Border.all(color: Colors.black12)
                                       ),
                                       height: 55,
-                                      width: 250.0,
+                                      width: 100.0,
                                       child: new Text(
-                                          "No. of Deadiv",
+                                          "No. of Dead",
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                               color: Colors.black,
@@ -481,13 +513,14 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                   ),
 
                                   Container(
+                                    alignment: Alignment.center,
                                       padding: const EdgeInsets.all(3.0),
                                       decoration: BoxDecoration(
                                           color: Colors.black12,
                                           border: Border.all(color: Colors.black12)
                                       ),
                                       height: 55,
-                                      width: 250.0,
+                                      width: 100.0,
                                       child: new Text(
                                           "No. of Injured",
                                           textAlign: TextAlign.center,
@@ -498,13 +531,14 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                       )
                                   ),
                                   Container(
+                                    alignment: Alignment.center,
                                       padding: const EdgeInsets.all(3.0),
                                       decoration: BoxDecoration(
                                           color: Colors.black12,
                                           border: Border.all(color: Colors.black12)
                                       ),
                                       height: 55,
-                                      width: 250.0,
+                                      width: 100.0,
                                       child: new Text(
                                           "No of Shelter Center",
                                           textAlign: TextAlign.center,
@@ -516,13 +550,14 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                   ),
 
                                   Container(
+                                    alignment:Alignment.center,
                                       padding: const EdgeInsets.all(3.0),
                                       decoration: BoxDecoration(
                                           color: Colors.black12,
                                           border: Border.all(color: Colors.black12)
                                       ),
                                       height: 55,
-                                      width: 250.0,
+                                      width: 100.0,
                                       child: new Text(
                                           "No of People Taken Shelter",
                                           textAlign: TextAlign.center,
@@ -534,6 +569,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                   ),
 
                                   Container(
+                                    alignment: Alignment.center,
                                       padding: const EdgeInsets.all(3.0),
                                       decoration: BoxDecoration(
                                           color: Colors.black12,
@@ -558,9 +594,9 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                 children: <Widget>[
                                   //SizedBox(
                                   SizedBox(
-                                    width: 2000.0,
-                                    //height: 270.0,
-                                    height: height/2.3,
+                                    width: 1320.0,
+                                    height: 140.0,
+                                    //height: height/1.5,
 
                                     child: ListView.builder(
 
@@ -591,13 +627,14 @@ class primaryincidentPageState extends State<primaryincidentPage> {
 
                                             if(j==0){
                                               return new Container(
+                                                alignment: Alignment.center,
                                                 padding: const EdgeInsets.all(3.0),
                                                 decoration: BoxDecoration(
                                                     border: Border.all(color: Colors.black12)
                                                 ),
                                                 height: 55,
 
-                                                width: 250.0,
+                                                width: 170.0,
                                                 child: new Text(
                                                     listTitle.elementAt(i).unionName,
                                                     textAlign: TextAlign.center,
@@ -612,6 +649,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                               return new Row(
                                                 children: <Widget>[
                                                   Container(
+                                                    alignment: Alignment.center,
                                                     padding: const EdgeInsets.all(3.0),
                                                     decoration: BoxDecoration(
                                                         border: Border.all(color: Colors.black12)
@@ -619,7 +657,8 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                                     height: 55,
                                                     width: 125.0,
                                                     child: TextField(
-                                                      controller: editControllerAfFull[i],
+                                                      keyboardType: TextInputType.number,
+                                                      controller: editControFamilyAfFull[i],
                                                       decoration: InputDecoration(
                                                         border: InputBorder.none,
                                                         //hintText: 'Enter a search term'
@@ -628,23 +667,9 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                                       style: TextStyle(fontSize: 15),
 
                                                       onChanged: (value) => {
-                                                        //total_family_afected_full = editControllerAfl.text as int,
-                                                        debugPrint("total ${editControllerAfFull[i].text}"),
-
-                                                        for (var i = 0; i < editControllerAfFull.length; i++) {
-                                                           totalAfFull += editControllerAfFull[i].text as int,
-
-                                                            debugPrint('total: $family_full_af')
-                                                          }
-
-//                                                        if(j==1){
-//                                                          listTitle[i].fullAffectedFamily = total_family_afected_full as String,
-//                                                          for (var i = 0; i < listTitle.length; i++) {
-//                                                            fm_full_aff = listTitle[i].fullAffectedFamily as int,
-//                                                            family_full_af =  family_full_af+fm_full_aff,
-//                                                            debugPrint('total: $family_full_af')
-//                                                          }
-//                                                        }
+                                                        //for(0)
+                                                      totalfullAfFamily += int.parse(editControFamilyAfFull[i].text),
+                                                      //debugPrint("total: ${totalfullAfFamily}")
                                                       },
 
                                                     ),
@@ -658,6 +683,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                               return new Row(
                                                 children: <Widget>[
                                                   Container(
+                                                    alignment: Alignment.center,
                                                     padding: const EdgeInsets.all(3.0),
                                                     decoration: BoxDecoration(
                                                         border: Border.all(color: Colors.black12)
@@ -665,7 +691,8 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                                     height: 55,
                                                     width: 125.0,
                                                     child: TextField(
-                                                      controller: editControllerAfHalf,
+                                                      keyboardType: TextInputType.number,
+                                                      controller: editControFamilyAfHalf[i],
                                                       decoration: InputDecoration(
                                                         border: InputBorder.none,
                                                         //hintText: 'Enter a search term'
@@ -674,17 +701,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                                       style: TextStyle(fontSize: 15),
 
                                                       onChanged: (value) => {
-                                                        //total_family_afected_full = editControllerAfl.text as int,
-                                                        debugPrint("total ${editControllerAfHalf.text}"),
-
-                                                        if(j==1){
-                                                          listTitle[i].fullAffectedFamily = total_family_afected_full as String,
-                                                          for (var i = 0; i < listTitle.length; i++) {
-                                                            fm_full_aff = listTitle[i].fullAffectedFamily as int,
-                                                            family_full_af =  family_full_af+fm_full_aff,
-                                                            debugPrint('total: $family_full_af')
-                                                          }
-                                                        }
+                                                        totalHalfAfFamily += int.parse(editControFamilyAfHalf[i].text),
                                                       },
 
                                                     ),
@@ -698,6 +715,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                               return new Row(
                                                 children: <Widget>[
                                                   Container(
+                                                    alignment: Alignment.center,
                                                     padding: const EdgeInsets.all(3.0),
                                                     decoration: BoxDecoration(
                                                         border: Border.all(color: Colors.black12)
@@ -705,7 +723,8 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                                     height: 55,
                                                     width: 125.0,
                                                     child: TextField(
-                                                      controller: editControHouseAfFull,
+                                                      keyboardType: TextInputType.number,
+                                                      controller: editControHouseAfFull[i],
                                                       decoration: InputDecoration(
                                                         border: InputBorder.none,
                                                         //hintText: 'Enter a search term'
@@ -714,17 +733,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                                       style: TextStyle(fontSize: 15),
 
                                                       onChanged: (value) => {
-                                                        //total_family_afected_full = editControllerAfl.text as int,
-                                                        debugPrint("total ${editControHouseAfFull.text}"),
-
-                                                        if(j==1){
-                                                          listTitle[i].fullAffectedFamily = total_family_afected_full as String,
-                                                          for (var i = 0; i < listTitle.length; i++) {
-                                                            fm_full_aff = listTitle[i].fullAffectedFamily as int,
-                                                            family_full_af =  family_full_af+fm_full_aff,
-                                                            debugPrint('total: $family_full_af')
-                                                          }
-                                                        }
+                                                        totalFullAfHouse += int.parse(editControHouseAfFull[i].text),
                                                       },
 
                                                     ),
@@ -738,6 +747,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                               return new Row(
                                                 children: <Widget>[
                                                   Container(
+                                                    alignment: Alignment.center,
                                                     padding: const EdgeInsets.all(3.0),
                                                     decoration: BoxDecoration(
                                                         border: Border.all(color: Colors.black12)
@@ -745,7 +755,8 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                                     height: 55,
                                                     width: 125.0,
                                                     child: TextField(
-                                                      controller: editControHouseAfHalf,
+                                                      keyboardType: TextInputType.number,
+                                                      controller: editControHouseAfHalf[i],
                                                       decoration: InputDecoration(
                                                         border: InputBorder.none,
                                                         //hintText: 'Enter a search term'
@@ -754,17 +765,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                                       style: TextStyle(fontSize: 15),
 
                                                       onChanged: (value) => {
-                                                        //total_family_afected_full = editControllerAfl.text as int,
-                                                        debugPrint("total ${editControHouseAfHalf.text}"),
-
-                                                        if(j==1){
-                                                          listTitle[i].fullAffectedFamily = total_family_afected_full as String,
-                                                          for (var i = 0; i < listTitle.length; i++) {
-                                                            fm_full_aff = listTitle[i].fullAffectedFamily as int,
-                                                            family_full_af =  family_full_af+fm_full_aff,
-                                                            debugPrint('total: $family_full_af')
-                                                          }
-                                                        }
+                                                        totalHalfAfHouse += int.parse(editControHouseAfHalf[i].text),
                                                       },
 
                                                     ),
@@ -776,17 +777,19 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                             }
                                             if(j==5){
                                               return new Container(
+                                                alignment: Alignment.center,
                                                 //padding: const EdgeInsets.all(3.0),
                                                 decoration: BoxDecoration(
                                                     border: Border.all(color: Colors.black12)
                                                 ),
                                                 height: 55,
 
-                                                width: 250.0,
+                                                width: 100.0,
                                                 child: Flexible(
 
                                                   child: TextField(
-                                                    controller: editControDeadDiv,
+                                                    keyboardType: TextInputType.number,
+                                                    controller: editControNumOfDead[i],
                                                     decoration: InputDecoration(
                                                       border: InputBorder.none,
                                                       //hintText: 'Enter a search term'
@@ -795,7 +798,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                                     style: TextStyle(fontSize: 15),
                                                     //controller: editController,
                                                     onChanged: (value) => {
-                                                      debugPrint("total ${editControDeadDiv.text}"),
+                                                      totalDead += int.parse(editControNumOfDead[i].text),
                                                     },
                                                   ),
                                                 ),
@@ -804,17 +807,19 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                             }
                                             if(j==6){
                                               return new Container(
+                                                alignment: Alignment.center,
                                                 //padding: const EdgeInsets.all(3.0),
                                                 decoration: BoxDecoration(
                                                     border: Border.all(color: Colors.black12)
                                                 ),
                                                 height: 55,
 
-                                                width: 250.0,
+                                                width: 100.0,
                                                 child: Flexible(
 
                                                   child: TextField(
-                                                    controller: editControInjured,
+                                                    keyboardType: TextInputType.number,
+                                                    controller: editControNumOfInjured[i],
                                                     decoration: InputDecoration(
                                                       border: InputBorder.none,
                                                       //hintText: 'Enter a search term'
@@ -823,7 +828,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                                     style: TextStyle(fontSize: 15),
                                                     //controller: editController,
                                                     onChanged: (value) => {
-                                                      debugPrint("total ${editControInjured.text}"),
+                                                      totalInjured += int.parse(editControNumOfInjured[i].text),
                                                     },
                                                   ),
                                                 ),
@@ -832,16 +837,18 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                             }
                                             if(j==7){
                                               return new Container(
+                                                alignment: Alignment.center,
                                                 //padding: const EdgeInsets.all(3.0),
                                                 decoration: BoxDecoration(
                                                     border: Border.all(color: Colors.black12)
                                                 ),
                                                 height: 55,
 
-                                                width: 250.0,
+                                                width: 100.0,
                                                 child: Flexible(
                                                   child: TextField(
-                                                    controller: editControshelterNum,
+                                                    keyboardType: TextInputType.number,
+                                                    controller: editControNumOfShelterCenter[i],
                                                     decoration: InputDecoration(
                                                       border: InputBorder.none,
                                                       //hintText: 'Enter a search term'
@@ -850,7 +857,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                                     style: TextStyle(fontSize: 15),
                                                     //controller: editController,
                                                     onChanged: (value) => {
-                                                      debugPrint("total ${editControshelterNum.text}"),
+                                                      totalShelterCenter += int.parse(editControNumOfShelterCenter[i].text),
                                                     },
                                                   ),
                                                 ),
@@ -859,17 +866,19 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                             }
                                             if(j==8){
                                               return new Container(
+                                                alignment: Alignment.center,
                                                 //padding: const EdgeInsets.all(3.0),
                                                 decoration: BoxDecoration(
                                                     border: Border.all(color: Colors.black12)
                                                 ),
                                                 height: 55,
 
-                                                width: 250.0,
+                                                width: 100.0,
                                                 child: Flexible(
 
                                                   child: TextField(
-                                                    controller: editControsPeoplehelterNum,
+                                                    keyboardType: TextInputType.number,
+                                                    controller: editControNumOfPeopleInShelterCenter[i],
                                                     decoration: InputDecoration(
                                                       border: InputBorder.none,
                                                       //hintText: 'Enter a search term'
@@ -878,7 +887,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                                     style: TextStyle(fontSize: 15),
                                                     //controller: editController,
                                                     onChanged: (value) => {
-                                                      debugPrint("total ${editControsPeoplehelterNum.text}"),
+                                                      totalInShelterCenter += int.parse(editControNumOfPeopleInShelterCenter[i].text),
                                                     },
                                                   ),
                                                 ),
@@ -887,6 +896,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                             }
                                             if(j==9){
                                               return new Container(
+                                                alignment: Alignment.center,
                                                 //padding: const EdgeInsets.all(3.0),
                                                 decoration: BoxDecoration(
                                                     border: Border.all(color: Colors.black12)
@@ -896,7 +906,8 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                                 width: 250.0,
                                                 child: Flexible(
                                                   child: TextField(
-                                                    controller: editControDeadDiv,
+
+                                                    controller: editControComments[i],
                                                     decoration: InputDecoration(
                                                       border: InputBorder.none,
                                                       //hintText: 'Enter a search term'
@@ -905,7 +916,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                                     style: TextStyle(fontSize: 15),
                                                     //controller: editController,
                                                     onChanged: (value) => {
-                                                      debugPrint("total ${editControDeadDiv.text}"),
+                                                      //totalComments += i),
                                                     },
                                                   ),
                                                 ),
@@ -927,13 +938,14 @@ class primaryincidentPageState extends State<primaryincidentPage> {
 
 
                                   Container(
+                                      alignment: Alignment.center,
                                       padding: const EdgeInsets.all(3.0),
                                       decoration: BoxDecoration(
                                           color: Colors.black12,
                                           border: Border.all(color: Colors.black12)
                                       ),
 
-                                      width: 250.0,
+                                      width: 170.0,
                                       height: 40,
                                       child: new Text(
                                           "Total",
@@ -951,6 +963,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                       Row(
                                         children: <Widget>[
                                           Container(
+                                              alignment: Alignment.center,
                                               padding: const EdgeInsets.all(3.0),
                                               decoration: BoxDecoration(
                                                   color: Colors.black12,
@@ -959,7 +972,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                               height: 40,
                                               width: 125.0,
                                               child: new Text(
-                                                  '$total_family_afected_full',
+                                                  '$totalfullAfFamily',
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
                                                       color: Colors.black,
@@ -969,6 +982,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                           ),
 
                                           Container(
+                                              alignment: Alignment.center,
                                               padding: const EdgeInsets.all(3.0),
                                               decoration: BoxDecoration(
                                                   color: Colors.black12,
@@ -977,7 +991,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                               height: 40,
                                               width: 125.0,
                                               child: new Text(
-                                                  "",
+                                                  '$totalHalfAfFamily',
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
                                                       color: Colors.black,
@@ -999,6 +1013,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                       Row(
                                         children: <Widget>[
                                           Container(
+                                              alignment: Alignment.center,
                                               padding: const EdgeInsets.all(3.0),
                                               decoration: BoxDecoration(
                                                   color: Colors.black12,
@@ -1007,7 +1022,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                               height: 40,
                                               width: 125.0,
                                               child: new Text(
-                                                  "",
+                                                  '$totalFullAfHouse',
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
                                                       color: Colors.black,
@@ -1017,6 +1032,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                           ),
 
                                           Container(
+                                              alignment: Alignment.center,
                                               padding: const EdgeInsets.all(3.0),
                                               decoration: BoxDecoration(
                                                   color: Colors.black12,
@@ -1025,7 +1041,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                               height: 40,
                                               width: 125.0,
                                               child: new Text(
-                                                  "",
+                                                  '$totalHalfAfHouse',
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
                                                       color: Colors.black,
@@ -1043,15 +1059,16 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                   ),
 
                                   Container(
+                                      alignment: Alignment.center,
                                       padding: const EdgeInsets.all(3.0),
                                       decoration: BoxDecoration(
                                           color: Colors.black12,
                                           border: Border.all(color: Colors.black12)
                                       ),
                                       height: 40,
-                                      width: 250.0,
+                                      width: 100.0,
                                       child: new Text(
-                                          "",
+                                          '$totalDead',
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                               color: Colors.black,
@@ -1061,15 +1078,16 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                   ),
 
                                   Container(
+                                      alignment: Alignment.center,
                                       padding: const EdgeInsets.all(3.0),
                                       decoration: BoxDecoration(
                                           color: Colors.black12,
                                           border: Border.all(color: Colors.black12)
                                       ),
                                       height: 40,
-                                      width: 250.0,
+                                      width: 100.0,
                                       child: new Text(
-                                          "",
+                                          '$totalInjured',
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                               color: Colors.black,
@@ -1078,33 +1096,16 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                       )
                                   ),
                                   Container(
+                                      alignment: Alignment.center,
                                       padding: const EdgeInsets.all(3.0),
                                       decoration: BoxDecoration(
                                           color: Colors.black12,
                                           border: Border.all(color: Colors.black12)
                                       ),
                                       height: 40,
-                                      width: 250.0,
+                                      width: 100.0,
                                       child: new Text(
-                                          "",
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 15
-                                          )
-                                      )
-                                  ),
-
-                                  Container(
-                                      padding: const EdgeInsets.all(3.0),
-                                      decoration: BoxDecoration(
-                                          color: Colors.black12,
-                                          border: Border.all(color: Colors.black12)
-                                      ),
-                                      height: 40,
-                                      width: 250.0,
-                                      child: new Text(
-                                          "",
+                                          '$totalShelterCenter',
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                               color: Colors.black,
@@ -1114,6 +1115,26 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                   ),
 
                                   Container(
+                                      alignment: Alignment.center,
+                                      padding: const EdgeInsets.all(3.0),
+                                      decoration: BoxDecoration(
+                                          color: Colors.black12,
+                                          border: Border.all(color: Colors.black12)
+                                      ),
+                                      height: 40,
+                                      width: 100.0,
+                                      child: new Text(
+                                          '$totalInShelterCenter',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 15
+                                          )
+                                      )
+                                  ),
+
+                                  Container(
+                                    alignment: Alignment.center,
                                       padding: const EdgeInsets.all(3.0),
                                       decoration: BoxDecoration(
                                           color: Colors.black12,
@@ -1122,7 +1143,8 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                       height: 40,
                                       width: 250.0,
                                       child: new Text(
-                                          "",
+                                          //'${editControComments.length}',
+                                          '',
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                               color: Colors.black,
@@ -1740,3 +1762,42 @@ class _MyAppState extends State<MyList> {
   }
 }
 
+class LocationName extends StatelessWidget {
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: ListView(
+        scrollDirection: Axis.horizontal,
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text("Division",style: TextStyle(fontSize:20.0,color:Colors.blue)),
+              Text("Khulna",style: TextStyle(fontSize:15.0,color:Colors.black)),
+            ],
+          ),
+
+          SizedBox(width: 15),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text("District",style: TextStyle(fontSize:20.0,color:Colors.blue)),
+              Text("Bagerhat",style: TextStyle(fontSize:15.0,color:Colors.black)),
+            ],
+          ),
+          SizedBox(width: 15),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text("Upazila",style: TextStyle(fontSize:20.0,color:Colors.blue )),
+              Text("Bagerhat Sadar Upazila",style: TextStyle(fontSize:15.0,color:Colors.black ))
+            ],
+          ),
+        ],
+      ),
+
+    );
+  }
+}
