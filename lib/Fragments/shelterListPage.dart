@@ -424,7 +424,7 @@ class _MyHomePageState extends State<shelterListPage> {
 
                                         Navigator.push(
                                           context,
-                                          MaterialPageRoute(builder: (context) => shelterUpdatePage(dataModel:data)),
+                                          MaterialPageRoute(builder: (context) => shelterUpdatePage(text: 'textToSend')),
                                         );
                                       },
                                     ),

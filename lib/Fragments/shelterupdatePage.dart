@@ -17,8 +17,8 @@ import 'package:wfp/Model/DataModel.dart';
 
 class shelterUpdatePage extends StatefulWidget {
   static const String routeName = '/contactPage';
-  DataModel dataModel = new DataModel('', '', '', '', '', '', '', '');
-  shelterUpdatePage({Key key,@required this.dataModel}) : super(key: key);
+  final String text;
+  shelterUpdatePage({Key key,@required this.text}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -403,7 +403,7 @@ class _MyHomePageState extends State<shelterUpdatePage> {
                    child: TextField(
                      decoration: InputDecoration(
                        border: InputBorder.none,
-                       hintText: new shelterUpdatePage().dataModel.unionName
+                       hintText: 'test'
                      ),
                      textAlign: TextAlign.center,
                      style: TextStyle(fontSize: 20),

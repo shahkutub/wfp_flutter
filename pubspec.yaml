@@ -28,6 +28,7 @@ dependencies:
   android_intent: ^0.3.7+2
   google_maps_flutter: ^0.5.28+1
   http: ^0.12.2
+  responsive: ^0.2.3+4
 
 
   flutter:

@@ -16,20 +16,19 @@ class loginPage extends StatefulWidget{
 class LoginResponse {
 
   //errormsg,successmsg,authentication_access
-  String success,message;
+  String message,Role,UserName;
 
-  Authentication_info user_info = new Authentication_info();
 
   // Logged_session_data logged_session_data = new Logged_session_data();
 
 
-  LoginResponse({this.success, this.message,this.user_info});
+  LoginResponse({ this.message,this.Role,this.UserName});
 
   factory LoginResponse.fromJson(Map<String, dynamic> json) {
     return LoginResponse(
-      success: json['success'],
       message: json['message'],
-      user_info:Authentication_info.fromJson(json['user_info']),
+      Role: json['Role'],
+      UserName: json['UserName'],
       // logged_session_data:Logged_session_data.fromJson(json['logged_session_data'])
     );
   }
@@ -95,6 +94,51 @@ class loginPageState extends State<loginPage>{
 
           }
 
+          Future<LoginResponse> loginRequest (String email,String pass) async {
+
+            setState(() {
+              if (_state == 0) {
+                animateButton();
+              }
+            });
+            var url ='http://117.103.87.205:89/api/APIAuthorization/LogIn';
+
+            Map data = {
+              'UserId': email,
+              'Password': pass,
+            };
+            //encode Map to JSON
+            var body = json.encode(data);
+
+            var response = await http.post(url,
+                headers: {"Content-Type": "application/json"},
+                body: body
+            );
+
+            if (response.statusCode == 200) {
+              // If the call to the server was successful, parse the JSON
+              //SharedPreferences prefs = await SharedPreferences.getInstance();
+
+              //_saveValues(data.user);
+              setState(() {
+                _state = 2;
+                //prefs.setString('username', 'moinul35ac@gmai.com');
+
+                //print("MSG"+prefs.getString('username'));
+                // _onChanged(true,data.user.full_name,data.user.warehouse_name,data.user.warehouse_id);
+              });
+//              final LoginResponse data = LoginResponse.fromJson(json.decode(response.body));
+              debugPrint('loginreponse: ${response.body.toString()}');
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => dashboard()));
+
+
+            }
+
+            print("${response.statusCode}");
+            print("${response.body}");
+           // return response;
+          }
+
           Future<LoginResponse> fetchPost(String email,String pass) async {
 
             try {
@@ -122,8 +166,9 @@ class loginPageState extends State<loginPage>{
               }
             });
 
-            http.Response response = await http.post("http://www.sromik-jigyasha.blast.org.bd/blast_new/api/sign_in",
-                body: {'user_name': email, 'password': pass}); // post api call
+            String json = " \"UserId\": \""+email+"\", \"Password\": \""+pass+"\" " ;
+            http.Response response = await http.post("http://117.103.87.205:89/api/APIAuthorization/LogIn",
+                body: {json}); // post api call
             if (response.statusCode == 200) {
               // If the call to the server was successful, parse the JSON
               //SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -137,7 +182,7 @@ class loginPageState extends State<loginPage>{
                 // _onChanged(true,data.user.full_name,data.user.warehouse_name,data.user.warehouse_id);
               });
 //              final LoginResponse data = LoginResponse.fromJson(json.decode(response.body));
-//              debugPrint('loginreponse: ${data.success}');
+              debugPrint('loginreponse: ${response.body.toString()}');
               Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => dashboard()));
 
 
@@ -152,7 +197,7 @@ class loginPageState extends State<loginPage>{
               _key.currentState.save();
               print("Email $_email");
               print("Password $_password");
-              fetchPost(_email,_password);
+              //fetchPost(_email,_password);
 
             } else {
               // validation error
@@ -241,7 +286,9 @@ class loginPageState extends State<loginPage>{
                               //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePageDrawerParticipant()));
                              // _sendToServer();
 
-                              fetchPost(emailController.text,passwordController.text);
+
+                              //fetchPost(emailController.text,passwordController.text);
+                              loginRequest(emailController.text,passwordController.text);
                             },
 
 //            onPressed: () {

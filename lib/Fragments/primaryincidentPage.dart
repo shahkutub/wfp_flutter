@@ -5,6 +5,8 @@ import 'package:flutter/widgets.dart';
 import 'package:wfp/navigationDrawer/navigationDrawer.dart';
 import 'package:grouped_buttons/grouped_buttons.dart';
 
+import '../SizeConfig.dart';
+
 class primaryincidentPage extends StatefulWidget {
   static const String routeName = '/primaryincidentPage';
 
@@ -141,8 +143,10 @@ class primaryincidentPageState extends State<primaryincidentPage> {
   @override
   Widget build(BuildContext context) {
     //return new Scaffold(
-
-    double height = MediaQuery.of(context).size.height;
+    SizeConfig().init(context);
+    //double height = MediaQuery.of(context).size.height;
+    double height = SizeConfig.screenHeight;
+    debugPrint('height: ${height.round()/3.7}');
 
 //    var pos = 1;
 //    for (var i = 0; i < 15; i++) {
@@ -258,7 +262,7 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                   Text("Bagerhat Sadar Upazila",style: TextStyle(fontSize:15.0,color:Colors.black ))
                                 ],
                               ),
-                              
+
                             ],
                           ),
                         ),
@@ -592,19 +596,17 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                               ),
                               Row(
                                 children: <Widget>[
-                                  //SizedBox(
                                   SizedBox(
                                     width: 1320.0,
-                                    height: 140.0,
-                                    //height: height/1.5,
+                                    //height: 140.0,
+                                    height: height.round()/3.7,
+                                    //height: SizeConfig.safeBlockVertical * 25,
 
                                     child: ListView.builder(
 
                                       itemCount: listTitle.length,
                                       itemBuilder: (BuildContext context, int i) {
-
                                         listRow.clear();
-
                                           listRow.add(listTitle.elementAt(i).unionName);
                                           listRow.add(listTitle.elementAt(i).fullAffectedFamily);
                                           listRow.add(listTitle.elementAt(i).partialAffectedFamily);
@@ -617,8 +619,6 @@ class primaryincidentPageState extends State<primaryincidentPage> {
                                           listRow.add(listTitle.elementAt(i).shelterCenter);
                                           listRow.add(listTitle.elementAt(i).takenShelter);
                                           listRow.add(listTitle.elementAt(i).comment);
-
-
 
                                         return new Row(
                                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
