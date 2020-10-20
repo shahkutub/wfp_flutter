@@ -1,4 +1,6 @@
 
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -147,6 +149,14 @@ class primaryincidentPageState extends State<primaryincidentPage> {
     //double height = MediaQuery.of(context).size.height;
     double height = SizeConfig.screenHeight;
     debugPrint('height: ${height.round()/3.7}');
+
+    final String todo = ModalRoute.of(context).settings.arguments;
+    debugPrint('loginData: ${todo}');
+
+    Map<String, dynamic> user = jsonDecode(todo);
+    debugPrint('Name: ${user['UserName']}');
+    debugPrint('Division: ${user['Division']['DivisionName']}');
+    debugPrint('District: ${user['District']['DistrictName']}');
 
 //    var pos = 1;
 //    for (var i = 0; i < 15; i++) {

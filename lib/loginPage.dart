@@ -2,6 +2,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wfp/dashboard.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -62,6 +63,7 @@ class loginPageState extends State<loginPage>{
           String _email;
           String _password;
           int _state = 0;
+
 
           @override
           void initState() {
@@ -129,7 +131,22 @@ class loginPageState extends State<loginPage>{
               });
 //              final LoginResponse data = LoginResponse.fromJson(json.decode(response.body));
               debugPrint('loginreponse: ${response.body.toString()}');
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => dashboard()));
+
+             // final prefs = await SharedPreferences.getInstance();
+
+              // setState(() {
+              //   prefs.setString('loginreponse', response.body.toString());
+              //   debugPrint('loginprefs: ${prefs.getString('loginreponse')}');
+              // });
+
+
+              Navigator.pushReplacement(context, MaterialPageRoute(
+                  builder: (context) => dashboard(),
+                settings: RouteSettings(
+                  arguments: response.body.toString()
+                ),
+              )
+              );
 
 
             }
